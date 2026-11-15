@@ -1,19 +1,16 @@
-import { auth } from "@clerk/nextjs/server";
-import { createClient } from "@supabase/supabase-js";
-import { env } from "../env";
+import { auth } from '@clerk/nextjs/server';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { env } from '@/lib/env';
+import type { Database } from './database.types';
 
-// Single session system: Clerk owns authentication, and Supabase receives the
-// signed-in user's Clerk session JWT via `accessToken` so Postgres RLS policies
-// can enforce `auth.jwt() ->> 'org_id'` without a second cookie session.
-export function createServerSupabaseClient() {
-    return createClient(
-        env("NEXT_PUBLIC_SUPABASE_URL"),
-        env("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
-        {
-            accessToken: async () => {
-                const { getToken } = await auth();
-                return (await getToken()) ?? null;
-            },
-        },
+// Every request carries the Clerk session token, so policies can read the
+// organization claim off it. Supabase never owns a session here: passing
+// `accessToken` disables supabase-js's own auth and cookie handling.
+export async function createServerSupabase(): Promise<SupabaseClient<Database>> {
+    const { getToken } = await auth();
+    return createClient<Database>(
+        env('NEXT_PUBLIC_SUPABASE_URL'),
+        env('NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY'),
+        { accessToken: async () => (await getToken()) ?? null },
     );
 }

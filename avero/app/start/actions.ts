@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { auth, clerkClient } from '@clerk/nextjs/server';
 
 const inflight = new Map<string, Promise<string>>();
 
@@ -15,11 +15,9 @@ async function findOrCreateOrganization(userId: string): Promise<string> {
 
     const user = await clerk.users.getUser(userId);
     const who =
-        user.firstName ??
-        user.username ??
-        user.primaryEmailAddress?.emailAddress.split("@")[0];
+        user.firstName ?? user.username ?? user.primaryEmailAddress?.emailAddress.split('@')[0];
     const org = await clerk.organizations.createOrganization({
-        name: who ? `${who}'s team` : "My team",
+        name: who ? `${who}'s team` : 'My team',
         createdBy: userId,
     });
     return org.id;
@@ -31,7 +29,7 @@ async function findOrCreateOrganization(userId: string): Promise<string> {
 // everything reads the organization off the session token.
 export async function resolveOrganization(): Promise<string> {
     const { userId } = await auth();
-    if (!userId) throw new Error("Not signed in");
+    if (!userId) throw new Error('Not signed in');
 
     const pending = inflight.get(userId);
     if (pending) return pending;
