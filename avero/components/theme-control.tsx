@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { type KeyboardEvent, useRef, useState } from "react";
-import { THEME_COOKIE, THEMES, type Theme } from "@/lib/theme";
+import { type KeyboardEvent, useRef, useState } from 'react';
+import { THEME_COOKIE, THEMES, type Theme } from '@/lib/theme';
 
 function applyTheme(theme: Theme) {
     document.documentElement.dataset.theme = theme;
@@ -19,8 +19,8 @@ export function ThemeControl({ initial }: { initial: Theme }) {
 
     function handleKeyDown(e: KeyboardEvent<HTMLButtonElement>, index: number) {
         let delta = 0;
-        if (e.key === "ArrowRight" || e.key === "ArrowDown") delta = 1;
-        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") delta = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') delta = 1;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') delta = -1;
         else return;
 
         e.preventDefault();
@@ -51,9 +51,7 @@ export function ThemeControl({ initial }: { initial: Theme }) {
                         onClick={() => choose(t)}
                         onKeyDown={(e) => handleKeyDown(e, index)}
                         className={`h-full px-2 first:rounded-l last:rounded-r ${
-                            selected
-                                ? "bg-raised text-fg"
-                                : "text-fg-muted hover:text-fg"
+                            selected ? 'bg-raised text-fg' : 'text-fg-muted hover:text-fg'
                         }`}
                     >
                         {t}
