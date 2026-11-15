@@ -76,6 +76,7 @@ CREATE TABLE public.files (
     skip_reason text,
     UNIQUE (analysis_id, path),
     UNIQUE (id, organization_id),
+    UNIQUE (id, analysis_id, organization_id),
     FOREIGN key (analysis_id, organization_id) REFERENCES public.analyses (id, organization_id) ON DELETE CASCADE
 );
 
@@ -96,8 +97,8 @@ CREATE TABLE public.edges (
     ),
     specifier text NOT NULL,
     FOREIGN key (analysis_id, organization_id) REFERENCES public.analyses (id, organization_id) ON DELETE CASCADE,
-    FOREIGN key (source_file_id, organization_id) REFERENCES public.files (id, organization_id) ON DELETE CASCADE,
-    FOREIGN key (target_file_id, organization_id) REFERENCES public.files (id, organization_id) ON DELETE CASCADE
+    FOREIGN key (source_file_id, analysis_id, organization_id) REFERENCES public.files (id, analysis_id, organization_id) ON DELETE CASCADE,
+    FOREIGN key (target_file_id, analysis_id, organization_id) REFERENCES public.files (id, analysis_id, organization_id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.routes (
@@ -108,7 +109,7 @@ CREATE TABLE public.routes (
     method text NOT NULL,
     path text NOT NULL,
     FOREIGN key (analysis_id, organization_id) REFERENCES public.analyses (id, organization_id) ON DELETE CASCADE,
-    FOREIGN key (file_id, organization_id) REFERENCES public.files (id, organization_id) ON DELETE CASCADE
+    FOREIGN key (file_id, analysis_id, organization_id) REFERENCES public.files (id, analysis_id, organization_id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.explanations (
