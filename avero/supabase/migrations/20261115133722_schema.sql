@@ -42,6 +42,7 @@ CREATE TABLE public.projects (
     repo_owner text NOT NULL,
     repo_name text NOT NULL,
     created_at timestamptz NOT NULL DEFAULT now(),
+    finished_at timestamptz,
     UNIQUE (organization_id, repo_owner, repo_name),
     UNIQUE (id, organization_id)
 );
@@ -58,6 +59,7 @@ CREATE TABLE public.analyses (
     commit_sha text,
     error text,
     created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now(),
     finished_at timestamptz,
     UNIQUE (id, organization_id),
     FOREIGN key (project_id, organization_id) REFERENCES public.projects (id, organization_id) ON DELETE CASCADE,
@@ -66,6 +68,19 @@ CREATE TABLE public.analyses (
         (status IN ('complete', 'failed')) = (finished_at IS NOT NULL)
     )
 );
+
+CREATE OR REPLACE FUNCTION public.set_updated_at () RETURNS trigger LANGUAGE plpgsql
+SET
+    search_path = pg_catalog AS $$
+BEGIN
+    NEW.updated_at := now();
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER analyses_set_updated_at
+BEFORE UPDATE ON public.analyses FOR EACH ROW
+EXECUTE FUNCTION public.set_updated_at ();
 
 CREATE TABLE public.files (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
