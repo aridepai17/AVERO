@@ -18,6 +18,7 @@ export type Database = {
                     organization_id: string;
                     project_id: string;
                     status: Database['public']['Enums']['analysis_status'];
+                    updated_at: string;
                 };
                 Insert: {
                     commit_sha?: string | null;
@@ -28,6 +29,7 @@ export type Database = {
                     organization_id: string;
                     project_id: string;
                     status?: Database['public']['Enums']['analysis_status'];
+                    updated_at?: string;
                 };
                 Update: {
                     commit_sha?: string | null;
@@ -38,6 +40,7 @@ export type Database = {
                     organization_id?: string;
                     project_id?: string;
                     status?: Database['public']['Enums']['analysis_status'];
+                    updated_at?: string;
                 };
                 Relationships: [
                     {
@@ -100,18 +103,18 @@ export type Database = {
                         referencedColumns: ['id'];
                     },
                     {
-                        foreignKeyName: 'edges_source_file_id_organization_id_fkey';
-                        columns: ['source_file_id', 'organization_id'];
+                        foreignKeyName: 'edges_source_file_id_analysis_id_organization_id_fkey';
+                        columns: ['source_file_id', 'analysis_id', 'organization_id'];
                         isOneToOne: false;
                         referencedRelation: 'files';
-                        referencedColumns: ['id', 'organization_id'];
+                        referencedColumns: ['id', 'analysis_id', 'organization_id'];
                     },
                     {
-                        foreignKeyName: 'edges_target_file_id_organization_id_fkey';
-                        columns: ['target_file_id', 'organization_id'];
+                        foreignKeyName: 'edges_target_file_id_analysis_id_organization_id_fkey';
+                        columns: ['target_file_id', 'analysis_id', 'organization_id'];
                         isOneToOne: false;
                         referencedRelation: 'files';
-                        referencedColumns: ['id', 'organization_id'];
+                        referencedColumns: ['id', 'analysis_id', 'organization_id'];
                     },
                 ];
             };
@@ -292,6 +295,7 @@ export type Database = {
             projects: {
                 Row: {
                     created_at: string;
+                    finished_at: string | null;
                     id: string;
                     organization_id: string;
                     repo_name: string;
@@ -299,6 +303,7 @@ export type Database = {
                 };
                 Insert: {
                     created_at?: string;
+                    finished_at?: string | null;
                     id?: string;
                     organization_id: string;
                     repo_name: string;
@@ -306,6 +311,7 @@ export type Database = {
                 };
                 Update: {
                     created_at?: string;
+                    finished_at?: string | null;
                     id?: string;
                     organization_id?: string;
                     repo_name?: string;
@@ -355,11 +361,11 @@ export type Database = {
                         referencedColumns: ['id', 'organization_id'];
                     },
                     {
-                        foreignKeyName: 'routes_file_id_organization_id_fkey';
-                        columns: ['file_id', 'organization_id'];
+                        foreignKeyName: 'routes_file_id_analysis_id_organization_id_fkey';
+                        columns: ['file_id', 'analysis_id', 'organization_id'];
                         isOneToOne: false;
                         referencedRelation: 'files';
-                        referencedColumns: ['id', 'organization_id'];
+                        referencedColumns: ['id', 'analysis_id', 'organization_id'];
                     },
                     {
                         foreignKeyName: 'routes_organization_id_fkey';
