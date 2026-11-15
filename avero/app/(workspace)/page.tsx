@@ -102,7 +102,7 @@ async function loadRows(): Promise<RowData[]> {
     const { data: analyses, error } = await supabase
         .from('analyses')
         .select(
-            'id, status, commit_sha, error, created_at, finished_at, projects(repo_owner, repo_name)',
+            'id, status, commit_sha, error, created_at, updated_at, finished_at, projects(repo_owner, repo_name)',
         )
         .order('created_at', { ascending: false })
         .limit(LIST_LIMIT);
