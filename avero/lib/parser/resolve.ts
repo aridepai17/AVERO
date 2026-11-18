@@ -387,5 +387,8 @@ function runtimeSiblings(declarationPath: string): string[] {
 
 function isInside(root: string, absolute: string): boolean {
     const relative = path.relative(root, absolute);
-    return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+    return (
+        relative === '' ||
+        (relative !== '..' && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative))
+    );
 }
