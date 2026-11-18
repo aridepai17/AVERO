@@ -1,5 +1,13 @@
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import {
+    closeSync,
+    fstatSync,
+    openSync,
+    readdirSync,
+    readFileSync,
+    readSync,
+    statSync,
+} from 'node:fs';
 import path from 'node:path';
 import { fallbackAdapter } from './adapters/fallback.ts';
 import { selectAdapter, type FrameworkAdapter } from './adapters/index.ts';
@@ -212,7 +220,43 @@ function readCandidate(
 ): CandidateFile | SkippedFile {
     let buffer: Buffer;
     try {
-        buffer = readFileSync(absolutePath);
+        const fd = openSync(absolutePath, 'r');
+        try {
+            const stat = fstatSync(fd);
+            if (!stat.isFile()) {
+                return {
+                    path: relativePath,
+                    reason: 'unreadable',
+                    detail: 'not a regular file',
+                };
+            }
+            if (stat.size > MAX_FILE_BYTES) {
+                return {
+                    path: relativePath,
+                    reason: 'too-large',
+                    detail: `${stat.size} bytes, limit ${MAX_FILE_BYTES}`,
+                };
+            }
+
+            const cap = MAX_FILE_BYTES + 1;
+            const scratch = Buffer.allocUnsafe(cap);
+            let offset = 0;
+            while (offset < cap) {
+                const bytesRead = readSync(fd, scratch, offset, cap - offset, null);
+                if (bytesRead === 0) break;
+                offset += bytesRead;
+            }
+            if (offset > MAX_FILE_BYTES) {
+                return {
+                    path: relativePath,
+                    reason: 'too-large',
+                    detail: `at least ${offset} bytes, limit ${MAX_FILE_BYTES}`,
+                };
+            }
+            buffer = scratch.subarray(0, offset);
+        } finally {
+            closeSync(fd);
+        }
     } catch (error) {
         return {
             path: relativePath,
@@ -220,13 +264,7 @@ function readCandidate(
             detail: error instanceof Error ? error.message : String(error),
         };
     }
-    if (buffer.byteLength > MAX_FILE_BYTES) {
-        return {
-            path: relativePath,
-            reason: 'too-large',
-            detail: `${buffer.byteLength} bytes, limit ${MAX_FILE_BYTES}`,
-        };
-    }
+
     if (buffer.includes(0)) {
         return { path: relativePath, reason: 'binary', detail: 'contains NUL bytes' };
     }
