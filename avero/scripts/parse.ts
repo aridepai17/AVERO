@@ -16,10 +16,22 @@ function main(argv: string[]): void {
     const all = argv.includes('--all');
     const out = valueOf(argv, '--out');
     const read = valueOf(argv, '--read');
-    const valueFlags = ['--out', '--read'];
-    const positional = argv.filter(
-        (arg, i) => !arg.startsWith('--') && !valueFlags.includes(argv[i - 1] ?? ''),
-    );
+    const valueFlags = new Set(['--out', '--read']);
+    const boolFlags = new Set(['--all']);
+
+    const positional: string[] = [];
+    for (let i = 0; i < argv.length; i++) {
+        const arg = argv[i];
+        if (valueFlags.has(arg)) {
+            i++;
+            continue;
+        }
+        if (boolFlags.has(arg)) continue;
+        if (arg.startsWith('-')) {
+            throw new Error(`Unknown option: ${arg}`);
+        }
+        positional.push(arg);
+    }
 
     if (read) {
         const result = deserializeParseResult(readFileSync(read, 'utf8'));
@@ -120,9 +132,15 @@ function row(label: string, c: StatusCounts): string {
     return `  ${label.padEnd(14)}${String(c.seen).padStart(6)}${String(c.internal).padStart(10)}${String(c.external).padStart(10)}${String(c.excluded).padStart(10)}${String(c.unresolved).padStart(12)}`;
 }
 
-function valueOf(argv: string[], flag: string): string | undefined {
-    const i = argv.indexOf(flag);
-    return i === -1 ? undefined : argv[i + 1];
+function valueOf(args: string[], flag: string): string | undefined {
+    const index = args.indexOf(flag);
+    if (index === -1) return undefined;
+
+    const next = args[index + 1];
+    if (next === undefined || next.startsWith('-')) {
+        throw new Error(`Missing filename after ${flag}`);
+    }
+    return next;
 }
 
 main(process.argv.slice(2));
