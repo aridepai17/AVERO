@@ -5,6 +5,7 @@ export type RawImport = {
     kind: EdgeKind;
     line: number;
     typeOnly: boolean;
+    isRequire: boolean;
 } & (
     | { literal: true; specifier: string }
     // import(someVariable): seen and reported, but there is no path to resolve.
@@ -24,6 +25,7 @@ export function extractImports(sourceFile: SourceFile): RawImport[] {
                 specifier: statement.getModuleSpecifierValue(),
                 line: statement.getStartLineNumber(),
                 typeOnly: clause ? isTypeOnlyClause(clause) : false,
+                isRequire: false,
             });
         } else if (Node.isExportDeclaration(statement)) {
             const specifier = statement.getModuleSpecifierValue();
@@ -34,6 +36,7 @@ export function extractImports(sourceFile: SourceFile): RawImport[] {
                 specifier,
                 line: statement.getStartLineNumber(),
                 typeOnly: statement.isTypeOnly() || allTypeOnly(statement.getNamedExports()),
+                isRequire: false,
             });
         } else if (Node.isImportEqualsDeclaration(statement)) {
             // `import x = require("y")` is TypeScript import syntax, not a CommonJS require() call.
@@ -47,6 +50,7 @@ export function extractImports(sourceFile: SourceFile): RawImport[] {
                         specifier: expression.getLiteralValue(),
                         line: statement.getStartLineNumber(),
                         typeOnly: statement.isTypeOnly(),
+                        isRequire: true,
                     });
                 }
             }
@@ -69,6 +73,7 @@ export function extractImports(sourceFile: SourceFile): RawImport[] {
                 specifier: argument.getLiteralValue(),
                 line,
                 typeOnly: false,
+                isRequire: false,
             });
         } else {
             found.push({
@@ -77,6 +82,7 @@ export function extractImports(sourceFile: SourceFile): RawImport[] {
                 expression: argument ? argument.getText() : '',
                 line,
                 typeOnly: false,
+                isRequire: false,
             });
         }
     }

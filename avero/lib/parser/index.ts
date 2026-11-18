@@ -92,7 +92,12 @@ export function parseSelection({ root, walk }: Selection): ParseResult {
         for (const found of extractImports(sourceFile)) {
             const specifier = found.literal ? found.specifier : found.expression;
             const outcome: ImportStatus = found.literal
-                ? resolver.resolve(candidate.absolutePath, found.specifier, found.kind)
+                ? resolver.resolve(
+                      candidate.absolutePath,
+                      found.specifier,
+                      found.kind,
+                      found.isRequire,
+                  )
                 : {
                       status: 'unresolved',
                       reason: 'non-literal-dynamic-import',

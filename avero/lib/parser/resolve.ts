@@ -37,7 +37,12 @@ export type RepositoryIndex = {
 };
 
 export type Resolver = {
-    resolve(fromAbsolute: string, specifier: string, kind: EdgeKind): ImportStatus;
+    resolve(
+        fromAbsolute: string,
+        specifier: string,
+        kind: EdgeKind,
+        isRequire?: boolean,
+    ): ImportStatus;
     configs(): ConfigReport[];
 };
 
@@ -145,11 +150,16 @@ export function createResolver(index: RepositoryIndex): Resolver {
         return classifyInRepository(relativePath);
     };
 
-    const resolve = (fromAbsolute: string, specifier: string, kind: EdgeKind): ImportStatus => {
+    const resolve = (
+        fromAbsolute: string,
+        specifier: string,
+        kind: EdgeKind,
+        isRequire = false,
+    ): ImportStatus => {
         if (isBuiltin(specifier)) return { status: 'external', external: 'builtin' };
 
         const config = configFor(fromAbsolute);
-        const mode = resolutionMode(fromAbsolute, kind, config.options);
+        const mode = resolutionMode(fromAbsolute, kind, isRequire, config.options);
         const result = ts.resolveModuleName(
             specifier,
             fromAbsolute,
@@ -324,10 +334,12 @@ function normaliseOptions(options: ts.CompilerOptions): ts.CompilerOptions {
 function resolutionMode(
     fromAbsolute: string,
     kind: EdgeKind,
+    isRequire: boolean,
     options: ts.CompilerOptions,
 ): ts.ResolutionMode {
     const resolution = options.moduleResolution;
     if (resolution === undefined || !NODE_ESM_RESOLUTION.has(resolution)) return undefined;
+    if (isRequire) return ts.ModuleKind.CommonJS;
     const ext = path.extname(fromAbsolute);
     if (ext === '.cts' || ext === '.cjs') {
         return kind === 'dynamic-import' ? ts.ModuleKind.ESNext : ts.ModuleKind.CommonJS;
