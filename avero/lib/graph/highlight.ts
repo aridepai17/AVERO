@@ -54,17 +54,33 @@ export function highlight(
     const self = key(selection.path);
     if (!self) return null;
     endpoints.add(self);
-    // Neighbours come from the file edges rather than the drawn ones, so a
-    // connection to a row in the same panel, which isn't drawn, still lights up.
+
+    // Neighbours and matching endpoints come from the file edges rather than
+    // shared handles alone, so folded/overflow siblings don't light up
+    // unrelated edges and same-panel neighbours still brighten.
+    const incomingSources = new Set<string>();
+    const outgoingTargets = new Set<string>();
     for (const e of edges) {
-        const other =
-            e.source === selection.path ? e.target : e.target === selection.path ? e.source : null;
-        const at = other === null ? undefined : key(other);
-        if (at) endpoints.add(at);
+        if (e.source === selection.path) {
+            const at = key(e.target);
+            if (at) {
+                endpoints.add(at);
+                outgoingTargets.add(at);
+            }
+        }
+        if (e.target === selection.path) {
+            const at = key(e.source);
+            if (at) {
+                endpoints.add(at);
+                incomingSources.add(at);
+            }
+        }
     }
     for (const e of view.edges) {
-        if (endpointKey(e.target, e.targetHandle) === self) incoming.add(e.id);
-        if (endpointKey(e.source, e.sourceHandle) === self) outgoing.add(e.id);
+        const source = endpointKey(e.source, e.sourceHandle);
+        const target = endpointKey(e.target, e.targetHandle);
+        if (target === self && incomingSources.has(source)) incoming.add(e.id);
+        if (source === self && outgoingTargets.has(target)) outgoing.add(e.id);
     }
     return { endpoints, objects: new Set(), incoming, outgoing };
 }
