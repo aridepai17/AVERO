@@ -1,0 +1,4936 @@
+{
+    "schemaVersion": 1,
+    "root": "/Users/advaithrpai/Projects/CLEAN-PORTFOLIO",
+    "projects": [
+        {
+            "path": ".",
+            "adapter": "none"
+        }
+    ],
+    "files": [
+        {
+            "path": "eslint.config.mjs",
+            "module": ".",
+            "lines": 16,
+            "bytes": 413,
+            "hash": "ab0863417093b5d6cb5c3fded0725eb0db1e2f7c8e6fba89f601c2f9e0dcf02c",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "index.ts",
+            "module": ".",
+            "lines": 1,
+            "bytes": 31,
+            "hash": "3fbafc48181f5f813a5e01a6f6c7b47f1c4c86117c30bad8694f8d32f3adfc00",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "nextconfig.ts",
+            "module": ".",
+            "lines": 30,
+            "bytes": 715,
+            "hash": "98e2db8e2ecef2c6ebd591c27a2f5d3505d64cd07a5328d12695ba4295424f17",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "postcss.config.mjs",
+            "module": ".",
+            "lines": 5,
+            "bytes": 88,
+            "hash": "748c606bb5e182bbd661658e17863dbed226c4c893bc96c1a0113d4727430057",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/app/api/chat/route.ts",
+            "module": "src/app/api/chat",
+            "lines": 312,
+            "bytes": 10073,
+            "hash": "d4bf5446c7061cee653c7fee70bb2d889b8bce01197a1912a5a58ae965864f37",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/app/api/contact/route.ts",
+            "module": "src/app/api/contact",
+            "lines": 215,
+            "bytes": 6071,
+            "hash": "57155550cc80c34d5398cc3ba93228e95a889c667378a6679bebf63a26760ae5",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/app/api/github/route.ts",
+            "module": "src/app/api/github",
+            "lines": 23,
+            "bytes": 716,
+            "hash": "de6e1cf929cd100457d45a0057a01d0e07626c394e279d85fa12f0a1acba6114",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/app/blog/[slug]/page.tsx",
+            "module": "src/app/blog/[slug]",
+            "lines": 125,
+            "bytes": 3872,
+            "hash": "39fe0d475835b1db63b37e58a08812a0eec412406d434914f1b955b3424bf90d",
+            "fanIn": 0,
+            "fanOut": 9
+        },
+        {
+            "path": "src/app/blog/BlogPageClient.tsx",
+            "module": "src/app/blog",
+            "lines": 177,
+            "bytes": 7089,
+            "hash": "506c57ec32c1667888115fc284a7bfc4b6b2dbad388bf2b3a01e58df69f95cff",
+            "fanIn": 1,
+            "fanOut": 8
+        },
+        {
+            "path": "src/app/blog/page.tsx",
+            "module": "src/app/blog",
+            "lines": 78,
+            "bytes": 2708,
+            "hash": "94aa9fed4c5851cee443250d0967a0d694836b5fd37772d63f24db332f10b589",
+            "fanIn": 0,
+            "fanOut": 7
+        },
+        {
+            "path": "src/app/contact/page.tsx",
+            "module": "src/app/contact",
+            "lines": 48,
+            "bytes": 1615,
+            "hash": "c5459c7409280752ee7f61471554c41bc68917bef472da2c270115453854b566",
+            "fanIn": 0,
+            "fanOut": 6
+        },
+        {
+            "path": "src/app/journey/page.tsx",
+            "module": "src/app/journey",
+            "lines": 65,
+            "bytes": 2442,
+            "hash": "5195c78fe81f04595fa22c45c50b9854b374217c2052ae3e60a33f82f44e8665",
+            "fanIn": 0,
+            "fanOut": 6
+        },
+        {
+            "path": "src/app/layout.tsx",
+            "module": "src/app",
+            "lines": 54,
+            "bytes": 2084,
+            "hash": "ec5c3717e5f7c5706730b41e3fb6f64f90ab4bd58a1a8a42a2676f5d91aadf0a",
+            "fanIn": 0,
+            "fanOut": 13
+        },
+        {
+            "path": "src/app/page.tsx",
+            "module": "src/app",
+            "lines": 47,
+            "bytes": 1397,
+            "hash": "6bd15e7938adff0681c6335a8d00e9b8c513668ec9d98de623eec28d0a285237",
+            "fanIn": 0,
+            "fanOut": 12
+        },
+        {
+            "path": "src/app/projects/[slug]/page.tsx",
+            "module": "src/app/projects/[slug]",
+            "lines": 222,
+            "bytes": 10741,
+            "hash": "534c7b67c1026fa39e2ff58fe973f8692624c59fc655ef4ea25f0c327951f539",
+            "fanIn": 0,
+            "fanOut": 10
+        },
+        {
+            "path": "src/app/projects/page.tsx",
+            "module": "src/app/projects",
+            "lines": 63,
+            "bytes": 2356,
+            "hash": "52ee1e3777326e12bbe0eb290239788b287bf90aae04bb23e7749830b0543568",
+            "fanIn": 0,
+            "fanOut": 6
+        },
+        {
+            "path": "src/app/resume/page.tsx",
+            "module": "src/app/resume",
+            "lines": 99,
+            "bytes": 4363,
+            "hash": "b686870e266b58f580a5d2bdb24a184cbe4f47300b93d029cd1f1b726305b300",
+            "fanIn": 0,
+            "fanOut": 6
+        },
+        {
+            "path": "src/app/robots.ts",
+            "module": "src/app",
+            "lines": 17,
+            "bytes": 611,
+            "hash": "d66d51498f73d77b97e55ee0d582eadf0cfe7b239251b2db9f92319347f77d87",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/app/sitemap.ts",
+            "module": "src/app",
+            "lines": 49,
+            "bytes": 1628,
+            "hash": "b802bc69ce726db7dfe1b3f1dfd07fb3e202bb594258327c4dcd0e7f4467153a",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/app/work-experience/page.tsx",
+            "module": "src/app/work-experience",
+            "lines": 65,
+            "bytes": 2491,
+            "hash": "fbbd937b7df441b1d50a8ff891e1bb2f74752bd4c3c7bce92c5a55d77e97ebdd",
+            "fanIn": 0,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/analytics/UmamiAnalytics.tsx",
+            "module": "src/components/analytics",
+            "lines": 20,
+            "bytes": 455,
+            "hash": "d9b52144c87b71df2d29c0dd20f8379bd2ab261e1bcfd0b21b78855a47f16a5c",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/animations/FadeIn.tsx",
+            "module": "src/components/animations",
+            "lines": 26,
+            "bytes": 533,
+            "hash": "92f8bc8a9dd528c1bfd2f9fb249de39e434a893febed83316f948db678117016",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/animations/SlideUp.tsx",
+            "module": "src/components/animations",
+            "lines": 26,
+            "bytes": 564,
+            "hash": "2df3b31ed4b254eea2db9fe31c8c53e5e7d3cbbf9f78a332d70347161402847b",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/blog/BlogCard.tsx",
+            "module": "src/components/blog",
+            "lines": 127,
+            "bytes": 5404,
+            "hash": "b3f4a6512abf9358cd2d8f4c01d3080ae162cd6c976e776fc38e81f40831ffe5",
+            "fanIn": 2,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/blog/BlogComponents.tsx",
+            "module": "src/components/blog",
+            "lines": 347,
+            "bytes": 9432,
+            "hash": "919071287a6fb0fe5bbf52c56a5fb7acb94a208de6812ceecddaae1e40b84cf2",
+            "fanIn": 2,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/blog/BlogContent.tsx",
+            "module": "src/components/blog",
+            "lines": 96,
+            "bytes": 3777,
+            "hash": "beffbc2f54345cc8a9d853cf95a0bb633551ca0d076acad38a9f9b0103d41cc9",
+            "fanIn": 1,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/blog/BlogList.tsx",
+            "module": "src/components/blog",
+            "lines": 35,
+            "bytes": 1117,
+            "hash": "ff0b3228b2485f67132341724bf8d78c9621a39438cd2e3c800659d0643cf0f6",
+            "fanIn": 2,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/blog/CodeCopyButton.tsx",
+            "module": "src/components/blog",
+            "lines": 55,
+            "bytes": 1871,
+            "hash": "5b21bd88178fa8be6cef0a4ae4c41120a22f91576908db26bd3d66de18b1e353",
+            "fanIn": 2,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/common/BackToTop.tsx",
+            "module": "src/components/common",
+            "lines": 45,
+            "bytes": 1520,
+            "hash": "56530763a8320108b6c6f3688578eefe1d593cfb4ca2ed3a5d07f739532ad8c9",
+            "fanIn": 1,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/common/ChatBubble.tsx",
+            "module": "src/components/common",
+            "lines": 532,
+            "bytes": 22796,
+            "hash": "1bab34d7e6e059c8e5f7580a0234f7c68704318d90620f5781a3908584adcecd",
+            "fanIn": 1,
+            "fanOut": 12
+        },
+        {
+            "path": "src/components/common/Container.tsx",
+            "module": "src/components/common",
+            "lines": 21,
+            "bytes": 455,
+            "hash": "2a70cd440f5e0982b6a01a41493704a74ce45c2132b7fb2d475fd7cf4acf77a5",
+            "fanIn": 22,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/common/FloatingToC.tsx",
+            "module": "src/components/common",
+            "lines": 350,
+            "bytes": 15177,
+            "hash": "d62fc7e0c3754418c69124f5aeb04bd74a32300f1b9bdddd1035de9cda068ac7",
+            "fanIn": 2,
+            "fanOut": 5
+        },
+        {
+            "path": "src/components/common/Footer.tsx",
+            "module": "src/components/common",
+            "lines": 72,
+            "bytes": 3430,
+            "hash": "44540a602326f1da7994a1b8c4bee61c3c1f41c26b67251a02b1a3646bd08540",
+            "fanIn": 1,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/common/LenisProvider.tsx",
+            "module": "src/components/common",
+            "lines": 56,
+            "bytes": 1317,
+            "hash": "88e1c4bbc7546a857e1e3aea28d442e464072b4b1894ee3b8f38cfa32a7eeacb",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/common/Navbar.tsx",
+            "module": "src/components/common",
+            "lines": 48,
+            "bytes": 2069,
+            "hash": "6a3f7c4dcd3a654086e9e2f58261a5d3a6c1ba83a095d05921caf4ba77aac243",
+            "fanIn": 1,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/common/Quote.tsx",
+            "module": "src/components/common",
+            "lines": 45,
+            "bytes": 2614,
+            "hash": "72f0d6259475baabdebd5edc0a1149e372fd78b8fe54d28a60664badc8d31fda",
+            "fanIn": 1,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/common/Reveal.tsx",
+            "module": "src/components/common",
+            "lines": 79,
+            "bytes": 2130,
+            "hash": "5d9029a0be5b40886f671f29755a48b2afdd43de7c5fb83a4e3fd02a54da792a",
+            "fanIn": 13,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/common/ScrollToTop.tsx",
+            "module": "src/components/common",
+            "lines": 28,
+            "bytes": 725,
+            "hash": "487847451197ec6935ffc660f1ff382cc0eeecdb49e2ac6713ad7534bc4571f2",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/common/SectionHeading.tsx",
+            "module": "src/components/common",
+            "lines": 28,
+            "bytes": 802,
+            "hash": "97e57bec9d530c1fc80d1f23fd95da07893d380307c255ec3400167ad7357469",
+            "fanIn": 6,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/common/Skill.tsx",
+            "module": "src/components/common",
+            "lines": 23,
+            "bytes": 714,
+            "hash": "57c0691cef30a5110b87ae6db1f38120e069e63a17ede2a50ac64f961733fd7a",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/common/ThemeProviders.tsx",
+            "module": "src/components/common",
+            "lines": 11,
+            "bytes": 305,
+            "hash": "551fc6af7685842440feb597ee82fefca9730870c7f82ed9cb792cc0079a9622",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/common/ThemeSwitch.tsx",
+            "module": "src/components/common",
+            "lines": 733,
+            "bytes": 21792,
+            "hash": "d085f6d0a8c5a29afb9589d4f3573ed09da8a23df52999da0bc88f9611bfcbfd",
+            "fanIn": 1,
+            "fanOut": 5
+        },
+        {
+            "path": "src/components/common/TrackedLink.tsx",
+            "module": "src/components/common",
+            "lines": 36,
+            "bytes": 1062,
+            "hash": "c75f5bdde25edbdfacddefafb2ec089b60732694f185b88bcd6ff755dfdcd0c2",
+            "fanIn": 10,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/contact/ContactForm.tsx",
+            "module": "src/components/contact",
+            "lines": 209,
+            "bytes": 8513,
+            "hash": "c411c6bb3c1c5f982016148f5240a68ab0e50ddbbd512b0c224122921fc8fcb9",
+            "fanIn": 1,
+            "fanOut": 7
+        },
+        {
+            "path": "src/components/experience/ExperienceCard.tsx",
+            "module": "src/components/experience",
+            "lines": 211,
+            "bytes": 10720,
+            "hash": "3041194bcf2ff60990ebf540193aec70c15885d32d4eeba61122dfa048ef169c",
+            "fanIn": 2,
+            "fanOut": 8
+        },
+        {
+            "path": "src/components/experience/ExperienceList.tsx",
+            "module": "src/components/experience",
+            "lines": 28,
+            "bytes": 768,
+            "hash": "70ddaed0d0b529d4f962eb71b3bca96c826a4b954be650e1bad8a95e2643f747",
+            "fanIn": 1,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/landing/About.tsx",
+            "module": "src/components/landing",
+            "lines": 76,
+            "bytes": 3587,
+            "hash": "2bcddf4d910e8994657e5ac038b3a666fb17acbdd36d44653343b02e7cbf3125",
+            "fanIn": 1,
+            "fanOut": 5
+        },
+        {
+            "path": "src/components/landing/Blog.tsx",
+            "module": "src/components/landing",
+            "lines": 41,
+            "bytes": 1308,
+            "hash": "f4b8b6a0ec9ff50eca12dec23e007a0f729bfc27a7c56ac2c57308513614f1b8",
+            "fanIn": 1,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/landing/CTA.tsx",
+            "module": "src/components/landing",
+            "lines": 158,
+            "bytes": 7436,
+            "hash": "3170d00be6b5c16ba4dcb02d3ce0fe6bdc4421c55eb39d6534281c02e9c4f4f2",
+            "fanIn": 1,
+            "fanOut": 5
+        },
+        {
+            "path": "src/components/landing/Experience.tsx",
+            "module": "src/components/landing",
+            "lines": 45,
+            "bytes": 1557,
+            "hash": "b3fb769c66bb0e678ad515b12b7edc4415468bd8a8f2e7b53b3fa15c44629539",
+            "fanIn": 1,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/landing/GitHub.tsx",
+            "module": "src/components/landing",
+            "lines": 161,
+            "bytes": 7479,
+            "hash": "48fab1fc9edf8cffda2a3b9165e77c070f96b4604ec1f80aa6db069e934855d7",
+            "fanIn": 1,
+            "fanOut": 7
+        },
+        {
+            "path": "src/components/landing/GitHubCalendarClient.tsx",
+            "module": "src/components/landing",
+            "lines": 31,
+            "bytes": 832,
+            "hash": "3959d629d58556bd91da961ced6bbc9d5f3c929a83dcec688fde68d9abdd628d",
+            "fanIn": 1,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/landing/Hero.tsx",
+            "module": "src/components/landing",
+            "lines": 176,
+            "bytes": 7570,
+            "hash": "48d596db730cf023021182b1d3c2de38d6fbeae28d5907c82eb1220181740cf3",
+            "fanIn": 1,
+            "fanOut": 9
+        },
+        {
+            "path": "src/components/landing/Journey.tsx",
+            "module": "src/components/landing",
+            "lines": 67,
+            "bytes": 3587,
+            "hash": "88ff3bee24d4c4ac84f0652f318994585dc2e1cda45cb3cc9c29f556b7736f8d",
+            "fanIn": 1,
+            "fanOut": 4
+        },
+        {
+            "path": "src/components/landing/LeetCode.tsx",
+            "module": "src/components/landing",
+            "lines": 86,
+            "bytes": 3904,
+            "hash": "a1452bc074963f514a1b3fe7556f9280d0e96697b4d08af413f73920c7ec754a",
+            "fanIn": 1,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/landing/LeetCodeChartClient.tsx",
+            "module": "src/components/landing",
+            "lines": 260,
+            "bytes": 10626,
+            "hash": "ada0b09eecfc575484827876b5ce496b8bb7f6ed82a6429e9b2e3470e4dc8ada",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/landing/Projects.tsx",
+            "module": "src/components/landing",
+            "lines": 40,
+            "bytes": 1260,
+            "hash": "97a27564a2e590e14aac6fd0b5c395f32c5a103b0603ca9e3e17a2898b701e1b",
+            "fanIn": 1,
+            "fanOut": 6
+        },
+        {
+            "path": "src/components/projects/ProjectCard.tsx",
+            "module": "src/components/projects",
+            "lines": 223,
+            "bytes": 11336,
+            "hash": "22125b437a34a330eb952295ead32d9416e63568b0703109d8c9b9080ac5e5c7",
+            "fanIn": 1,
+            "fanOut": 11
+        },
+        {
+            "path": "src/components/projects/ProjectComponents.tsx",
+            "module": "src/components/projects",
+            "lines": 413,
+            "bytes": 12214,
+            "hash": "ff7d60d67819911d5188898ec12f1bf6ab71fe2ef5e872a4cf912c459e758638",
+            "fanIn": 1,
+            "fanOut": 9
+        },
+        {
+            "path": "src/components/projects/ProjectContent.tsx",
+            "module": "src/components/projects",
+            "lines": 232,
+            "bytes": 10817,
+            "hash": "699b936f6cb9083b21b39548b55df6cb23dab2483b55d624701b8ef204e1fb5d",
+            "fanIn": 1,
+            "fanOut": 8
+        },
+        {
+            "path": "src/components/projects/ProjectList.tsx",
+            "module": "src/components/projects",
+            "lines": 29,
+            "bytes": 773,
+            "hash": "9dd28d843c2b8dd47f765b78b6cbcf677b3053a9f6d23ca6bb5eda5810af7a5f",
+            "fanIn": 2,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/projects/ProjectNavigation.tsx",
+            "module": "src/components/projects",
+            "lines": 85,
+            "bytes": 4102,
+            "hash": "f277c1bb1707ca8b40c23218da1fb5648ea39e1d93cefa6377bb5a3833ebb8a8",
+            "fanIn": 1,
+            "fanOut": 5
+        },
+        {
+            "path": "src/components/seo/JsonLd.tsx",
+            "module": "src/components/seo",
+            "lines": 39,
+            "bytes": 1104,
+            "hash": "32a4ce6573e487229d6082932b50e9ba28ea7bb804da76fd79204f67027e1164",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/ArrowLeft.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 544,
+            "hash": "408a9cb1ff622faef2c20533a5f06ef175d84d4c75016903c4d2a498b48d449e",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/ArrowRight.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 487,
+            "hash": "7bfe41602090de798b000ab8371f54ac6e172fafdcd00731e1b99b6a3c90dc79",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/ArrowUpRight.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 461,
+            "hash": "0f104cb249b2b1b96666594e9abd180c7ef44cf0ed9b28f9fc7c2b2725adda6d",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/ArrowUUpRight.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 524,
+            "hash": "2a0c1871df0c0c532725aa8457bf96680b21e6e923afbb36939ee6c9e477e16c",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Calender.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 790,
+            "hash": "ded88209394e0cdf14d65b98735abb75b4d7995db9215f39881cdae4298123ab",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Chat.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 665,
+            "hash": "c473c0d558f7b9f57df134a60999c2377a1a6d3e7fc197278811a25fff96e635",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/ChatBubbleIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 12,
+            "bytes": 787,
+            "hash": "2be33c90c8f66b152093e52f6f09257474828b8957d90a47b463a4d80d5547c4",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/CheckCircle.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 582,
+            "hash": "6ae01e1b602c1151185b4463b7c5e081371f76b0803094076e786840d17af7fd",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Code.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 687,
+            "hash": "ba49843035079035f29dc716b5c7261768612b23e8e07255365251524bdd058f",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Copied.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 709,
+            "hash": "3b4c39d51c818172d2676ed07cba8466cf90b8df36e4666c5bdde862fce45611",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Copy.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 515,
+            "hash": "8b3e999391fbcfd89c38de015f83056c7532706f39be01a1711c990039632b3d",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/CV.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 877,
+            "hash": "771f35d041f25741a9a681ece7b43de3595b2fdb3d2002a69f0bf4d03bc63fe2",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/GitHubIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 1132,
+            "hash": "82145c42f6983447c14d5a5032047a75167c8782ee6f2e8ff55d1225e852a2a1",
+            "fanIn": 5,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/LinkedInIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 659,
+            "hash": "6b50c55647b18113b2d9c0e1000a3699215984687faf60521a11f3d2cec72804",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/MailIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 13,
+            "bytes": 451,
+            "hash": "ae03b628355ad3f4dbd10158a03fb19478e1aec0129a06b044fa52fc878d6933",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Moon.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 703,
+            "hash": "034dc48921525f8d619a2fcadbc1c1256e93ea20794863d6fcace052ce4fec9c",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/PlayCircle.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 562,
+            "hash": "439f1fc1a7c1d31b77659d56da69533f459276998659f2749219e83e4a06520d",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/SendIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 12,
+            "bytes": 641,
+            "hash": "2e7b2d89ef3dd7b612819c94ef94692a918dc04dba5fb20967e9ab3c65fe8e24",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Sun.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 920,
+            "hash": "e7ce64cebca44f8dede20545855ed629aaba5de76a2120d922e219dd96ff396b",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/Website.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 873,
+            "hash": "cb5b21501b0fea5096c530698d984faabf0f777e66cda186f996ef92c6be1339",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/svgs/XIcon.tsx",
+            "module": "src/components/svgs",
+            "lines": 14,
+            "bytes": 606,
+            "hash": "4d5c79c827abb82d8001c33ab408caf8ccaa2536142e0e8f8e6c239cd883b0c3",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Appwrite.tsx",
+            "module": "src/components/technologies",
+            "lines": 15,
+            "bytes": 2503,
+            "hash": "dec4a3f5a0669e0fbd7b5d6dc9ffce1c884903f1c3e03f0a4a8221abdc58d278",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/AWS.tsx",
+            "module": "src/components/technologies",
+            "lines": 14,
+            "bytes": 3900,
+            "hash": "7abaa89dc0aea44ecac2038967fe93716eb23e9186f990f86f10d98c5f1d244b",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/BootStrap.tsx",
+            "module": "src/components/technologies",
+            "lines": 7,
+            "bytes": 1042,
+            "hash": "6316a44a5bbfc52fb4fe925daef207e0b95f4ed6d481f1a0a3785ad91140c30c",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Bun.tsx",
+            "module": "src/components/technologies",
+            "lines": 43,
+            "bytes": 6195,
+            "hash": "fba9e8dba83c8d399360695167ba971c6b3d8b0c2ec1d7f720ad830c7ea7600e",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/CSS.tsx",
+            "module": "src/components/technologies",
+            "lines": 30,
+            "bytes": 1199,
+            "hash": "93ddb501220e8b6042310aea8e9c52adceb650e4613e5f44c06ea8c486f5b19d",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/ExpressJs.tsx",
+            "module": "src/components/technologies",
+            "lines": 7,
+            "bytes": 996,
+            "hash": "8d8598e3188a254870ad0ac5defe92b29770f186ce2d6d4b40680c855f529255",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Figma.tsx",
+            "module": "src/components/technologies",
+            "lines": 26,
+            "bytes": 944,
+            "hash": "b5a7bfbab8c705e84633b6259c92aeca223c71db9bf79d59292cda988583c991",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Git.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 556,
+            "hash": "07600beb61b7d6784ddf6343e744d150cccf490e9152059e8c01ae5ae8b184de",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/GitHub.tsx",
+            "module": "src/components/technologies",
+            "lines": 20,
+            "bytes": 2220,
+            "hash": "5750658e98640ec719b5d8d08d6662c25ac640740649dd20a1e01b1dd4a86496",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/GSAP.tsx",
+            "module": "src/components/technologies",
+            "lines": 21,
+            "bytes": 563,
+            "hash": "93bea3b4101ff545f8c4fa9fe5f7d8bc3b5f635c8b8c807e2da81666d8f9b8a8",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Html.tsx",
+            "module": "src/components/technologies",
+            "lines": 22,
+            "bytes": 901,
+            "hash": "341865d6f01f5b285bb53ce1ae06f23d6ffe74e1286afd8baa4727f60516188f",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/JavaScript.tsx",
+            "module": "src/components/technologies",
+            "lines": 11,
+            "bytes": 1271,
+            "hash": "b6e42b3309a976a5620c768f1f985e3fe0cea1b0bfe3883e3ef5065550d58b54",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Librosa.tsx",
+            "module": "src/components/technologies",
+            "lines": 21,
+            "bytes": 616,
+            "hash": "36ca3ced2d913bf85fd734ba2fabbc01c2a51a75eacc0fd80f3fdd4253870852",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Matplotlib.tsx",
+            "module": "src/components/technologies",
+            "lines": 20,
+            "bytes": 737,
+            "hash": "9500c71c3ee7f65a189b6f75fb219aecb644e2d667c979a9ad32fd06f116f261",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/MDXIcon.tsx",
+            "module": "src/components/technologies",
+            "lines": 15,
+            "bytes": 896,
+            "hash": "51b3f5ad9cc6a291947a6956f9117839a6b1c2c983a4a6f3fb2e45d0e51e2e4f",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/MongoDB.tsx",
+            "module": "src/components/technologies",
+            "lines": 102,
+            "bytes": 7156,
+            "hash": "5272cb17839c3b7f5307a798b2b476d1f20ff502af9ed66bf5849455684c5f4d",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Motion.tsx",
+            "module": "src/components/technologies",
+            "lines": 14,
+            "bytes": 438,
+            "hash": "ec73b6b15bcaa2c8d7bc1533adc2f933f164ed350ae7fee798a613fbb4f2b247",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/NestJs.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 5674,
+            "hash": "d1292b80d8519d87213b935f1ac3f4b2691f8ef7cabd888bf2312732643c2797",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Netlify.tsx",
+            "module": "src/components/technologies",
+            "lines": 14,
+            "bytes": 960,
+            "hash": "739879c645f42793b10463349a064c13d19dd1ab8929041302fee4f7a9f4ffb9",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/NextJs.tsx",
+            "module": "src/components/technologies",
+            "lines": 45,
+            "bytes": 1556,
+            "hash": "280a88c397721d660bd643108307e4903b22e6c3162dd64cf648c621de01fa9e",
+            "fanIn": 4,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/NodeJs.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 990,
+            "hash": "7c6e7810e1ba092db96a9a00116d91bb08822ed33c81dd4bdd98872a6bec7f70",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/NumPy.tsx",
+            "module": "src/components/technologies",
+            "lines": 12,
+            "bytes": 356,
+            "hash": "7cd2e55e65d46f667d906e3f13ec02b1ae267cf61303e08524aeec16e2685229",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/PostgreSQL.tsx",
+            "module": "src/components/technologies",
+            "lines": 16,
+            "bytes": 9388,
+            "hash": "4027b8f25c95850534c51a64dd05b9b6df793bcf6ec83a6dc4b76cad4312d9e8",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Postman.tsx",
+            "module": "src/components/technologies",
+            "lines": 18,
+            "bytes": 3945,
+            "hash": "558646e5f282a770e16c58881fc785f086a6818b8cccbe57f93312d82026f04c",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Prisma.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 577,
+            "hash": "c5f9766abe5045d1871db4b342d9e6266bb4d7c0fdcc1ce7ebf109be4e8bc2cc",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Python.tsx",
+            "module": "src/components/technologies",
+            "lines": 16,
+            "bytes": 865,
+            "hash": "0f09513cc3ae945cc71704a9336231d0ad3281b57d6214634fee4e8344c5f7ad",
+            "fanIn": 4,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/ReactIcon.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 2504,
+            "hash": "0e0fc798fb87af1aeca8e990d4e593211120ecd3ab63e0cf7cdee021c43c6f7d",
+            "fanIn": 4,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Sanity.tsx",
+            "module": "src/components/technologies",
+            "lines": 25,
+            "bytes": 1503,
+            "hash": "fc9daa52f82ecaa44f0069a18a2ee39c72eeb9cd5b058e1421b9c5cd4b0b4b21",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/ScikitLearn.tsx",
+            "module": "src/components/technologies",
+            "lines": 15,
+            "bytes": 441,
+            "hash": "6a0472655eed56e77752bceac662e5cd67befa5595a66c01d0802bdf46709ed3",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Shadcn.tsx",
+            "module": "src/components/technologies",
+            "lines": 17,
+            "bytes": 644,
+            "hash": "16e84751e12b9ca44cdd2c38863553eef222214452fae7806707d2a19bc35258",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/SocketIo.tsx",
+            "module": "src/components/technologies",
+            "lines": 17,
+            "bytes": 938,
+            "hash": "db421484e3452e25c2048851b7bf8944809c0b3e5fd615377eefb464c03ff0fc",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Supabase.tsx",
+            "module": "src/components/technologies",
+            "lines": 15,
+            "bytes": 658,
+            "hash": "dd55db03c2db4f5b5e2891976247ed7b497d258ef63340c2ac2860edcc983fe7",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Tailwindcss.tsx",
+            "module": "src/components/technologies",
+            "lines": 16,
+            "bytes": 964,
+            "hash": "59f75be0e26927a3d3eba3d25ee20072436468b2a97befa62e72c127f02ec545",
+            "fanIn": 4,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/TensorFlow.tsx",
+            "module": "src/components/technologies",
+            "lines": 10,
+            "bytes": 300,
+            "hash": "1a7007a147c311f2d6b407eadbcb0657558ae7204fe4c882186227b12a59e0d7",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/ThreeJs.tsx",
+            "module": "src/components/technologies",
+            "lines": 31,
+            "bytes": 2085,
+            "hash": "0a4cade8f0cbdbb42468c5b3d365e8dd0f4061b46c6602c76f1d8df4d7c1966a",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/TypeScript.tsx",
+            "module": "src/components/technologies",
+            "lines": 11,
+            "bytes": 1049,
+            "hash": "b1626c9be3877288092421a2e4a570048bea7ce4fa8f4076b8ab52f04788fc53",
+            "fanIn": 4,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/technologies/Vercel.tsx",
+            "module": "src/components/technologies",
+            "lines": 12,
+            "bytes": 342,
+            "hash": "7a90dfb65e54c3d45a610c885c6afcb9f8db30652463f1ea097aa5791f94e409",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/ui/accordion.tsx",
+            "module": "src/components/ui",
+            "lines": 65,
+            "bytes": 2246,
+            "hash": "c441260ba19b73ec527fb753703639ba80b9505e828a783deec29962bb6a08fd",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/alert-dialog.tsx",
+            "module": "src/components/ui",
+            "lines": 201,
+            "bytes": 6103,
+            "hash": "235dc24d3520b928961b15e09003e85b9b3f54751588e7c32f3770ca08ac0a14",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/alert.tsx",
+            "module": "src/components/ui",
+            "lines": 65,
+            "bytes": 1840,
+            "hash": "1d1c56dfb4a54b6ba5d7ea57f9ea5704ef8efebc80f669221e5e4c2b62863c5c",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/aspect-ratio.tsx",
+            "module": "src/components/ui",
+            "lines": 11,
+            "bytes": 282,
+            "hash": "be206904b703fcb1a280f0e836976ac6a97de4f0079448343517516d49f8d886",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/ui/avatar.tsx",
+            "module": "src/components/ui",
+            "lines": 108,
+            "bytes": 3284,
+            "hash": "dfd948efe60a4423b1806a4f6cf01403f9d44b3fcacf495ce23635865bac53f6",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/badge.tsx",
+            "module": "src/components/ui",
+            "lines": 50,
+            "bytes": 1985,
+            "hash": "6a3df2c516e9b211c0cdda5b48ecae64ba7149e10fd8722cfeee6eaf76766a54",
+            "fanIn": 5,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/breadcrumb.tsx",
+            "module": "src/components/ui",
+            "lines": 108,
+            "bytes": 2670,
+            "hash": "5931457d8b0dbb4ee66504e8aca8241d8c36180a2135ca01fd48edf49b717a0f",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/button-variants.ts",
+            "module": "src/components/ui",
+            "lines": 36,
+            "bytes": 2027,
+            "hash": "5e7810798dfe2a5b8909240ca984655032b23c7787ee8d0e578d395c624df1c1",
+            "fanIn": 9,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/ui/button.tsx",
+            "module": "src/components/ui",
+            "lines": 36,
+            "bytes": 888,
+            "hash": "5406ee35b41208a96c129b91814f1e23d1160d6694ee17b3f974711cff988d29",
+            "fanIn": 15,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/calendar.tsx",
+            "module": "src/components/ui",
+            "lines": 239,
+            "bytes": 9881,
+            "hash": "3c7befd3aa757469256cfa0a328be8a38fae347f17f80751d02e9a6b23580704",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/card.tsx",
+            "module": "src/components/ui",
+            "lines": 91,
+            "bytes": 2289,
+            "hash": "2118b3c6924fd8cd1a8cc1ed23271dc208cff6002aca549e8f5e9d817be7ac3f",
+            "fanIn": 2,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/carousel.tsx",
+            "module": "src/components/ui",
+            "lines": 242,
+            "bytes": 6533,
+            "hash": "f0b6ee8b5f18fed96337dc772521fb06e7045a59c44d010037fe9ac68a68ca62",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/checkbox.tsx",
+            "module": "src/components/ui",
+            "lines": 31,
+            "bytes": 1323,
+            "hash": "c7f97f1ba60c1be5fdf3cf52e74240ff7f3fe1bdcbba37ac2dbe43f734477209",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/collapsible.tsx",
+            "module": "src/components/ui",
+            "lines": 33,
+            "bytes": 857,
+            "hash": "df74e17fb051ba15fab61a0b3d0636d0594d4f404a1b7558c4a9ff4e5e06f803",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/ui/command.tsx",
+            "module": "src/components/ui",
+            "lines": 183,
+            "bytes": 5439,
+            "hash": "83e7d784bff4e5d86f7aabef3ea94f6effd33b7d7619bb0230294aafd0e66ce1",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/context-menu.tsx",
+            "module": "src/components/ui",
+            "lines": 257,
+            "bytes": 9130,
+            "hash": "d3385def7c81f477e8e6dc2bb04ff1c759e2f56f08a01f25b4f74b02807e0a67",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/dialog.tsx",
+            "module": "src/components/ui",
+            "lines": 160,
+            "bytes": 4871,
+            "hash": "450e14cd7c7dccf871657211fa852ee51682c7d645351730cda1a222f5bd8e6b",
+            "fanIn": 3,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/drawer.tsx",
+            "module": "src/components/ui",
+            "lines": 134,
+            "bytes": 4664,
+            "hash": "9ce12d90df08d70728b9c36295d5697a84d144c69cf1ef44a7bf5514b3d8fa89",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/dropdown-menu.tsx",
+            "module": "src/components/ui",
+            "lines": 264,
+            "bytes": 9322,
+            "hash": "ab871f20c64bb92bf3c4ae8b43e9464816d2b5565dcb4d4eefba264d46ff9ec9",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/expandable-chat.tsx",
+            "module": "src/components/ui",
+            "lines": 218,
+            "bytes": 7719,
+            "hash": "edf78e748ae49595b32a1a353be25642b9c956a006130793fe66a8991755191a",
+            "fanIn": 1,
+            "fanOut": 3
+        },
+        {
+            "path": "src/components/ui/form.tsx",
+            "module": "src/components/ui",
+            "lines": 172,
+            "bytes": 4318,
+            "hash": "c1554c2b0e27ac6e8aca1181f4529c7018fb2c97d932ce5af64e684b7ded2ee3",
+            "fanIn": 1,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/hover-card.tsx",
+            "module": "src/components/ui",
+            "lines": 43,
+            "bytes": 1648,
+            "hash": "b24349dc0d2512fd13849059842fa499d4038226e3dabd675485beab206e60c0",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/input-otp.tsx",
+            "module": "src/components/ui",
+            "lines": 77,
+            "bytes": 2509,
+            "hash": "a5161898ce40d9fbb7ea8ad6a7c937dae07a75c1f3fbc48b6d02d5f325aec850",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/input.tsx",
+            "module": "src/components/ui",
+            "lines": 20,
+            "bytes": 1040,
+            "hash": "65855b55143d3a6b1684ad762884f820ebb798812de7f6fafd81fd65dba743be",
+            "fanIn": 3,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/label.tsx",
+            "module": "src/components/ui",
+            "lines": 23,
+            "bytes": 668,
+            "hash": "1620651f3ab0686c42cc71d0fa579ea93e4ef6e929a6cc550dc65d12c5a3fec7",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/menubar.tsx",
+            "module": "src/components/ui",
+            "lines": 278,
+            "bytes": 9360,
+            "hash": "7a0b5c14bd4bbfcdc9400f285e37012e0aa6ae2179352e7864d4360fd4def687",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/navigation-menu.tsx",
+            "module": "src/components/ui",
+            "lines": 169,
+            "bytes": 7254,
+            "hash": "612c5ecb4367a432c1c6b3b9cbdd6571c91cdbf7f92bea7f68850f9650eed933",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/pagination.tsx",
+            "module": "src/components/ui",
+            "lines": 126,
+            "bytes": 3101,
+            "hash": "d5a19ec0bdb461c59c10c2484291b075f50cc58c44596a990a99e1cc660f1f77",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/popover.tsx",
+            "module": "src/components/ui",
+            "lines": 88,
+            "bytes": 2589,
+            "hash": "a8757132e75a747024536b24fc9f89d9df401acb7acb6ef7d8e0b8893290d96a",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/progress.tsx",
+            "module": "src/components/ui",
+            "lines": 31,
+            "bytes": 865,
+            "hash": "67633d36d96f312221db80abc951540e9cbb0d537ff161d173b36ad98c859efc",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/radio-group.tsx",
+            "module": "src/components/ui",
+            "lines": 44,
+            "bytes": 1604,
+            "hash": "dc044c1ca95e739898ebef2d82fdd0878be28eb9967784263d59dee2d2c3e771",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/resizable.tsx",
+            "module": "src/components/ui",
+            "lines": 52,
+            "bytes": 1985,
+            "hash": "04d026979905464554d9da749337bec54c1998b8f13a6b5d094af8a62a3f9852",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/scroll-area.tsx",
+            "module": "src/components/ui",
+            "lines": 57,
+            "bytes": 1872,
+            "hash": "671c5c9054804a35581458856a86c03bc4cae1c58cd3bbed43b1beac01fe69b3",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/select.tsx",
+            "module": "src/components/ui",
+            "lines": 195,
+            "bytes": 7165,
+            "hash": "b6ca647582879cbc559d71a9f032a41b2c430cd0ed940c9621de8999f7139c49",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/separator.tsx",
+            "module": "src/components/ui",
+            "lines": 27,
+            "bytes": 772,
+            "hash": "7640e5937ccdb41820c95ea9d6bdfc837f4f9ee6df2c49be3d0fb3467422bcf3",
+            "fanIn": 9,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/sheet.tsx",
+            "module": "src/components/ui",
+            "lines": 142,
+            "bytes": 4679,
+            "hash": "8ee8f020824340db459cfdd58ada6bbb0ed5876f247df1122748c10b73b5b047",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/sidebar.tsx",
+            "module": "src/components/ui",
+            "lines": 749,
+            "bytes": 25102,
+            "hash": "3fbdce34c836abd36772c5c149425cf265ea5ab6dfd337873e58393e97a46e32",
+            "fanIn": 0,
+            "fanOut": 8
+        },
+        {
+            "path": "src/components/ui/skeleton.tsx",
+            "module": "src/components/ui",
+            "lines": 13,
+            "bytes": 309,
+            "hash": "ae9e45ae8777708cf095e418aa1f45f7deb5871c0ba6b349d08462d47bd4aaab",
+            "fanIn": 2,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/slider.tsx",
+            "module": "src/components/ui",
+            "lines": 62,
+            "bytes": 2311,
+            "hash": "71f280eb355f37765a879d8f6af557a852d55e704c7295b3f93e4ab801bb832d",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/sonner.tsx",
+            "module": "src/components/ui",
+            "lines": 40,
+            "bytes": 1204,
+            "hash": "3903779692ebcd4cbbc9feb9df77b5d5aa958fd21368eb8894613dbd57f83054",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/components/ui/switch.tsx",
+            "module": "src/components/ui",
+            "lines": 34,
+            "bytes": 1532,
+            "hash": "b4fdc813703da004837e81f85680dcafb9a515fb2c7bdb132e086c20b55fa4bd",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/table.tsx",
+            "module": "src/components/ui",
+            "lines": 115,
+            "bytes": 2875,
+            "hash": "caa93e86b6d38d4d5d75140a449a2c29b2929a30ed2ed3e68eefcf57190a2098",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/tabs.tsx",
+            "module": "src/components/ui",
+            "lines": 90,
+            "bytes": 4079,
+            "hash": "0dcaae6f9bb85047233da4c2ee1dacd06c20e66d9ddbde65e223e1c577086a63",
+            "fanIn": 0,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/textarea.tsx",
+            "module": "src/components/ui",
+            "lines": 17,
+            "bytes": 815,
+            "hash": "7f9c9b07f8447877c48b7a96af99f7e9d6b2b54619b56ce6ca7e4c208ca307e3",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/toggle-group.tsx",
+            "module": "src/components/ui",
+            "lines": 82,
+            "bytes": 2588,
+            "hash": "6442680522138f7a8ad0848089e1071b42431e7e88269105684b263d0e014617",
+            "fanIn": 0,
+            "fanOut": 2
+        },
+        {
+            "path": "src/components/ui/toggle.tsx",
+            "module": "src/components/ui",
+            "lines": 46,
+            "bytes": 1721,
+            "hash": "e894ad88c44cd3018d9e11334328771ca0a5bed5ce594ab61de53f1def0bc1b7",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/components/ui/tooltip.tsx",
+            "module": "src/components/ui",
+            "lines": 56,
+            "bytes": 1995,
+            "hash": "0c145e61cfb911ee968b7e153c4fea068ab9e928b93cf1b3fb7e649687a3c1c7",
+            "fanIn": 8,
+            "fanOut": 1
+        },
+        {
+            "path": "src/config/About.tsx",
+            "module": "src/config",
+            "lines": 36,
+            "bytes": 1451,
+            "hash": "045a18aea37238f034ab057f8659f19cc08389e41049d21c094403252f61c3d9",
+            "fanIn": 3,
+            "fanOut": 11
+        },
+        {
+            "path": "src/config/ChatPrompt.ts",
+            "module": "src/config",
+            "lines": 75,
+            "bytes": 2405,
+            "hash": "fb37e8dbf52ce5dc6aca09809da8af1d46f207d77be8f508ad75c0f5989f0b88",
+            "fanIn": 2,
+            "fanOut": 4
+        },
+        {
+            "path": "src/config/Contact.tsx",
+            "module": "src/config",
+            "lines": 29,
+            "bytes": 830,
+            "hash": "4262b43e4266e2137bbaeab9b7ff2706850816f876f822482e6e7c0710984dbf",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/CTA.tsx",
+            "module": "src/config",
+            "lines": 24,
+            "bytes": 545,
+            "hash": "0de8165bc5fbe9c2e4679a53afa3370592e8098636e71628d6fd6ad563c64b2b",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/Experience.tsx",
+            "module": "src/config",
+            "lines": 130,
+            "bytes": 4704,
+            "hash": "edf5a574fd9d5c476ac7b42ea422771fe83de41ca7e5d49d9ceaf5c7c49a5802",
+            "fanIn": 5,
+            "fanOut": 6
+        },
+        {
+            "path": "src/config/Footer.tsx",
+            "module": "src/config",
+            "lines": 5,
+            "bytes": 144,
+            "hash": "9a5950d2ebcdc5907e1853e3bfaba9cf158c39d4dcf609dea17a34f3a54611c0",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/GitHub.tsx",
+            "module": "src/config",
+            "lines": 67,
+            "bytes": 1587,
+            "hash": "f55b2614b404f9987847a778556d520a3a95d33de2c591e588ca1e2ca5509915",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/Hero.tsx",
+            "module": "src/config",
+            "lines": 166,
+            "bytes": 4292,
+            "hash": "d08fe5635b58ce196f800b0cee5dd55ab29189db5e211d2c952ec78e57664adb",
+            "fanIn": 6,
+            "fanOut": 17
+        },
+        {
+            "path": "src/config/Journey.tsx",
+            "module": "src/config",
+            "lines": 25,
+            "bytes": 549,
+            "hash": "5be4ef9b302c9f9ee775363ef503548ee57245e02857000d61f939ef23101f9f",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/config/LeetCode.ts",
+            "module": "src/config",
+            "lines": 6,
+            "bytes": 193,
+            "hash": "e549ec8542b304538cb0c8d898bcd8bd8f9f2e20a2c4ba37e8c886254f238113",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/Meta.tsx",
+            "module": "src/config",
+            "lines": 174,
+            "bytes": 5315,
+            "hash": "e7fb1e5561831f47be66781f02dffc38f792e62e2855084a50e6446cb9b14c44",
+            "fanIn": 9,
+            "fanOut": 2
+        },
+        {
+            "path": "src/config/Navbar.tsx",
+            "module": "src/config",
+            "lines": 14,
+            "bytes": 365,
+            "hash": "33e9e9175ed96f5687830cd54d5c14408bbaa69c0f8e8e14e79329282333b9b8",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/Projects.tsx",
+            "module": "src/config",
+            "lines": 148,
+            "bytes": 7056,
+            "hash": "27136bf8b6b5b58a87e5c8dac4ec4569156e63fa2ca9e0f5467cc9abce3e1715",
+            "fanIn": 4,
+            "fanOut": 9
+        },
+        {
+            "path": "src/config/Quote.ts",
+            "module": "src/config",
+            "lines": 82,
+            "bytes": 2827,
+            "hash": "c08e12cd07d57140ca4d63cca5383781f9ac9101290a1ad90ff70d30c1ffdc11",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/config/Resume.ts",
+            "module": "src/config",
+            "lines": 3,
+            "bytes": 119,
+            "hash": "0d70eb7aad37b200d88b57f7c5f9b89f3df5ffd2d707dddbfc88cf9d2886f73b",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/hooks/use-haptic-feedback.ts",
+            "module": "src/hooks",
+            "lines": 50,
+            "bytes": 1561,
+            "hash": "8bfa76cc31ab3d3a86d03bc05745b280174fcb19e24978fbf04e481a3c5ca6c8",
+            "fanIn": 6,
+            "fanOut": 0
+        },
+        {
+            "path": "src/hooks/use-mobile.ts",
+            "module": "src/hooks",
+            "lines": 23,
+            "bytes": 652,
+            "hash": "43fd1508d0a5c8c8aee485820bac83ed70d1f50d955405b44267341a54eb2eb1",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/hooks/use-umami.ts",
+            "module": "src/hooks",
+            "lines": 29,
+            "bytes": 726,
+            "hash": "f7f50c8dab5277739ca05df6531a97e164c9991ff64820bc2f0623be05f8d696",
+            "fanIn": 10,
+            "fanOut": 1
+        },
+        {
+            "path": "src/lib/blog.ts",
+            "module": "src/lib",
+            "lines": 151,
+            "bytes": 4410,
+            "hash": "bb2a641ec4bed97823af62c74c2240a0418bc6672ff976004e09a1737916ae68",
+            "fanIn": 4,
+            "fanOut": 1
+        },
+        {
+            "path": "src/lib/contact-schema.ts",
+            "module": "src/lib",
+            "lines": 40,
+            "bytes": 1166,
+            "hash": "9e6a9549a92ebcb26b2e64161dd1fe3b151e3e2c0616c17cabf8215b91398ee4",
+            "fanIn": 2,
+            "fanOut": 0
+        },
+        {
+            "path": "src/lib/fonts.ts",
+            "module": "src/lib",
+            "lines": 6,
+            "bytes": 163,
+            "hash": "97d1adb48b2b6febf8c5aee0cf39d5719a8709a58fe404a1cd4ce45ff421757f",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/lib/github.ts",
+            "module": "src/lib",
+            "lines": 112,
+            "bytes": 3347,
+            "hash": "a9b3ecad92071aa36f4ec37738af490822c6c0455a5924c50f229a6b33f0a012",
+            "fanIn": 3,
+            "fanOut": 1
+        },
+        {
+            "path": "src/lib/hero.ts",
+            "module": "src/lib",
+            "lines": 59,
+            "bytes": 1756,
+            "hash": "2e8c1d218c11262265831811b4a428b1bda75b03ae81fd4dc51f4f085c14cb18",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/lib/journey.ts",
+            "module": "src/lib",
+            "lines": 23,
+            "bytes": 670,
+            "hash": "82e3d8912bc1890237bfdab82a52ce4627e1c4bdd8fa820d19b6efca8eb15841",
+            "fanIn": 1,
+            "fanOut": 0
+        },
+        {
+            "path": "src/lib/leetcode.ts",
+            "module": "src/lib",
+            "lines": 87,
+            "bytes": 2694,
+            "hash": "331ab77eacdf049be9e4576a3343a299ab36af7aeb2f7a1156b8e0a0a8643daa",
+            "fanIn": 1,
+            "fanOut": 1
+        },
+        {
+            "path": "src/lib/lenis.ts",
+            "module": "src/lib",
+            "lines": 3,
+            "bytes": 44,
+            "hash": "5e3795d42850856dd501470b70fb8f815ce8927323aa866df5b5fa965cb0078d",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/lib/project.ts",
+            "module": "src/lib",
+            "lines": 219,
+            "bytes": 6899,
+            "hash": "0a5d95da8e57d1d793a53d9cc9e0905f4ef34fa49a69f265a042155249ac5971",
+            "fanIn": 2,
+            "fanOut": 2
+        },
+        {
+            "path": "src/lib/utils.ts",
+            "module": "src/lib",
+            "lines": 6,
+            "bytes": 171,
+            "hash": "c578b87f59ae6033e51c3a3b4caf1f85c5649646edc51bf225013de0fb336810",
+            "fanIn": 50,
+            "fanOut": 0
+        },
+        {
+            "path": "src/middleware.ts",
+            "module": "src",
+            "lines": 65,
+            "bytes": 2456,
+            "hash": "84c7f758dbeae2bd5ba87d7b1a7d74f58a8c856cf94ec1999d587f1295f70fe4",
+            "fanIn": 0,
+            "fanOut": 0
+        },
+        {
+            "path": "src/types/analytics.ts",
+            "module": "src/types",
+            "lines": 64,
+            "bytes": 1302,
+            "hash": "8a200eb65d686999694e9e18e4d15633bd98cdbc380573960fd6631fa2b06525",
+            "fanIn": 3,
+            "fanOut": 0
+        },
+        {
+            "path": "src/types/blog.ts",
+            "module": "src/types",
+            "lines": 19,
+            "bytes": 358,
+            "hash": "aa56fdfe99890ea299add1e8216ee6630c595a3a25046d7785d0dddb76f2447c",
+            "fanIn": 6,
+            "fanOut": 0
+        },
+        {
+            "path": "src/types/project.ts",
+            "module": "src/types",
+            "lines": 41,
+            "bytes": 943,
+            "hash": "045d72361ad96f88f87e8bc336c1f0f4fceebbb167cfa0916f3d09d8bf14a85a",
+            "fanIn": 5,
+            "fanOut": 0
+        },
+        {
+            "path": "src/validate/testTelegram.ts",
+            "module": "src/validate",
+            "lines": 123,
+            "bytes": 3910,
+            "hash": "c96244a83e5b20d4d16377d3f0f1bd5a727fdcdd2c69da33875cd3ea659bafa0",
+            "fanIn": 0,
+            "fanOut": 0
+        }
+    ],
+    "edges": [
+        {
+            "source": "src/app/api/chat/route.ts",
+            "target": "src/config/ChatPrompt.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/ChatPrompt",
+            "line": 1
+        },
+        {
+            "source": "src/app/api/contact/route.ts",
+            "target": "src/lib/contact-schema.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/contact-schema",
+            "line": 1
+        },
+        {
+            "source": "src/app/api/github/route.ts",
+            "target": "src/lib/github.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/github",
+            "line": 1
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/blog/BlogContent.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/blog/BlogContent",
+            "line": 1
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/blog/BlogList.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/blog/BlogList",
+            "line": 2
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 3
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/common/FloatingToC.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/FloatingToC",
+            "line": 4
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/svgs/ArrowLeft.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/ArrowLeft",
+            "line": 5
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button-variants",
+            "line": 6
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 7
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 8
+        },
+        {
+            "source": "src/app/blog/[slug]/page.tsx",
+            "target": "src/lib/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/blog",
+            "line": 9
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/components/blog/BlogList.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/blog/BlogList",
+            "line": 3
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 4
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 5
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/components/ui/badge.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/badge",
+            "line": 6
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 7
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 8
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 9
+        },
+        {
+            "source": "src/app/blog/BlogPageClient.tsx",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 10
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/app/blog/BlogPageClient.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./BlogPageClient",
+            "line": 10
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 3
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/components/ui/skeleton.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/skeleton",
+            "line": 4
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 5
+        },
+        {
+            "source": "src/app/blog/page.tsx",
+            "target": "src/lib/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/blog",
+            "line": 6
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/components/contact/ContactForm.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/contact/ContactForm",
+            "line": 3
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 4
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/config/Contact.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Contact",
+            "line": 5
+        },
+        {
+            "source": "src/app/contact/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 6
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/components/blog/BlogComponents.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/blog/BlogComponents",
+            "line": 1
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 2
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 3
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 4
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 5
+        },
+        {
+            "source": "src/app/journey/page.tsx",
+            "target": "src/lib/journey.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/journey",
+            "line": 6
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/analytics/UmamiAnalytics.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/analytics/UmamiAnalytics",
+            "line": 1
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/BackToTop.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/BackToTop",
+            "line": 2
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/ChatBubble.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/ChatBubble",
+            "line": 3
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/Footer.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Footer",
+            "line": 4
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/LenisProvider.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/LenisProvider",
+            "line": 5
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/Navbar.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Navbar",
+            "line": 6
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/Quote.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Quote",
+            "line": 7
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/ScrollToTop.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/ScrollToTop",
+            "line": 8
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/common/ThemeProviders.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/ThemeProviders",
+            "line": 9
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/seo/JsonLd.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/seo/JsonLd",
+            "line": 10
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/ui/sonner.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/sonner",
+            "line": 11
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/tooltip",
+            "line": 12
+        },
+        {
+            "source": "src/app/layout.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 13
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/About.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/About",
+            "line": 3
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/Blog.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/Blog",
+            "line": 4
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/CTA.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/CTA",
+            "line": 5
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/Experience.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/Experience",
+            "line": 6
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/GitHub.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/GitHub",
+            "line": 7
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/Hero",
+            "line": 8
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/Journey.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/Journey",
+            "line": 9
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/LeetCode.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/LeetCode",
+            "line": 10
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/components/landing/Projects.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/landing/Projects",
+            "line": 11
+        },
+        {
+            "source": "src/app/page.tsx",
+            "target": "src/lib/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/blog",
+            "line": 12
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/common/FloatingToC.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/FloatingToC",
+            "line": 2
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 3
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/TrackedLink",
+            "line": 4
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/projects/ProjectContent.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/projects/ProjectContent",
+            "line": 5
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/projects/ProjectNavigation.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/projects/ProjectNavigation",
+            "line": 6
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/svgs/ArrowLeft.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/ArrowLeft",
+            "line": 7
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button-variants",
+            "line": 8
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 9
+        },
+        {
+            "source": "src/app/projects/[slug]/page.tsx",
+            "target": "src/lib/project.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/project",
+            "line": 10
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/components/projects/ProjectList.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/projects/ProjectList",
+            "line": 3
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 4
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 5
+        },
+        {
+            "source": "src/app/projects/page.tsx",
+            "target": "src/config/Projects.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Projects",
+            "line": 6
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 4
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 5
+        },
+        {
+            "source": "src/app/resume/page.tsx",
+            "target": "src/config/Resume.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Resume",
+            "line": 6
+        },
+        {
+            "source": "src/app/sitemap.ts",
+            "target": "src/lib/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/blog",
+            "line": 1
+        },
+        {
+            "source": "src/app/sitemap.ts",
+            "target": "src/lib/project.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/project",
+            "line": 2
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Container",
+            "line": 1
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 2
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/components/experience/ExperienceList.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/experience/ExperienceList",
+            "line": 3
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 4
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/config/Experience.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Experience",
+            "line": 5
+        },
+        {
+            "source": "src/app/work-experience/page.tsx",
+            "target": "src/config/Meta.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Meta",
+            "line": 6
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 11
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/components/svgs/ArrowRight.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/ArrowRight",
+            "line": 12
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/components/svgs/Calender.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Calender",
+            "line": 13
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/components/ui/badge.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/badge",
+            "line": 1
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/components/ui/card.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/card",
+            "line": 2
+        },
+        {
+            "source": "src/components/blog/BlogCard.tsx",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 8
+        },
+        {
+            "source": "src/components/blog/BlogComponents.tsx",
+            "target": "src/components/blog/CodeCopyButton.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./CodeCopyButton",
+            "line": 6
+        },
+        {
+            "source": "src/components/blog/BlogComponents.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 1
+        },
+        {
+            "source": "src/components/blog/BlogContent.tsx",
+            "target": "src/components/blog/BlogComponents.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./BlogComponents",
+            "line": 9
+        },
+        {
+            "source": "src/components/blog/BlogContent.tsx",
+            "target": "src/components/svgs/Calender.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Calender",
+            "line": 8
+        },
+        {
+            "source": "src/components/blog/BlogContent.tsx",
+            "target": "src/components/ui/badge.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/badge",
+            "line": 1
+        },
+        {
+            "source": "src/components/blog/BlogContent.tsx",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 2
+        },
+        {
+            "source": "src/components/blog/BlogList.tsx",
+            "target": "src/components/blog/BlogCard.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./BlogCard",
+            "line": 3
+        },
+        {
+            "source": "src/components/blog/BlogList.tsx",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 1
+        },
+        {
+            "source": "src/components/blog/CodeCopyButton.tsx",
+            "target": "src/components/svgs/Copied.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Copied",
+            "line": 6
+        },
+        {
+            "source": "src/components/blog/CodeCopyButton.tsx",
+            "target": "src/components/svgs/Copy.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Copy",
+            "line": 7
+        },
+        {
+            "source": "src/components/blog/CodeCopyButton.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 8
+        },
+        {
+            "source": "src/components/blog/CodeCopyButton.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/BackToTop.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button",
+            "line": 7
+        },
+        {
+            "source": "src/components/common/BackToTop.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 8
+        },
+        {
+            "source": "src/components/common/BackToTop.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/BackToTop.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/svgs/ChatBubbleIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/ChatBubbleIcon",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/svgs/SendIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/SendIcon",
+            "line": 25
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/ui/avatar.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/avatar",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 5
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/ui/expandable-chat.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/expandable-chat",
+            "line": 6
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/ui/input.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/input",
+            "line": 12
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/components/ui/scroll-area.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/scroll-area",
+            "line": 13
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/config/ChatPrompt.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/ChatPrompt",
+            "line": 14
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Hero",
+            "line": 15
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 16
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 17
+        },
+        {
+            "source": "src/components/common/ChatBubble.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 18
+        },
+        {
+            "source": "src/components/common/FloatingToC.tsx",
+            "target": "src/components/common/LenisProvider.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/LenisProvider",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/FloatingToC.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button",
+            "line": 11
+        },
+        {
+            "source": "src/components/common/FloatingToC.tsx",
+            "target": "src/components/ui/drawer.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/drawer",
+            "line": 12
+        },
+        {
+            "source": "src/components/common/FloatingToC.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/FloatingToC.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 5
+        },
+        {
+            "source": "src/components/common/Footer.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Container",
+            "line": 9
+        },
+        {
+            "source": "src/components/common/Footer.tsx",
+            "target": "src/config/Footer.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Footer",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/Footer.tsx",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Hero",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/Footer.tsx",
+            "target": "src/config/Navbar.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Navbar",
+            "line": 5
+        },
+        {
+            "source": "src/components/common/Navbar.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Container",
+            "line": 9
+        },
+        {
+            "source": "src/components/common/Navbar.tsx",
+            "target": "src/components/common/ThemeSwitch.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./ThemeSwitch",
+            "line": 10
+        },
+        {
+            "source": "src/components/common/Navbar.tsx",
+            "target": "src/config/Navbar.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Navbar",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/Navbar.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/Quote.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Container",
+            "line": 6
+        },
+        {
+            "source": "src/components/common/Quote.tsx",
+            "target": "src/config/Quote.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Quote",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/ScrollToTop.tsx",
+            "target": "src/components/common/LenisProvider.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/LenisProvider",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/SectionHeading.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/common/ThemeSwitch.tsx",
+            "target": "src/components/svgs/Moon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Moon",
+            "line": 8
+        },
+        {
+            "source": "src/components/common/ThemeSwitch.tsx",
+            "target": "src/components/svgs/Sun.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Sun",
+            "line": 9
+        },
+        {
+            "source": "src/components/common/ThemeSwitch.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button",
+            "line": 10
+        },
+        {
+            "source": "src/components/common/ThemeSwitch.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/ThemeSwitch.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/common/TrackedLink.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 3
+        },
+        {
+            "source": "src/components/common/TrackedLink.tsx",
+            "target": "src/types/analytics.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/analytics",
+            "line": 4
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/components/svgs/Chat.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Chat",
+            "line": 25
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/components/ui/form.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/form",
+            "line": 4
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/components/ui/input.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/input",
+            "line": 12
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/components/ui/textarea.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/textarea",
+            "line": 13
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 14
+        },
+        {
+            "source": "src/components/contact/ContactForm.tsx",
+            "target": "src/lib/contact-schema.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/contact-schema",
+            "line": 15
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/common/Skill.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Skill",
+            "line": 7
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/svgs/GitHubIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/GitHubIcon",
+            "line": 8
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/svgs/LinkedInIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/LinkedInIcon",
+            "line": 9
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/svgs/Website.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Website",
+            "line": 10
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/svgs/XIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/XIcon",
+            "line": 11
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 12
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/config/Experience.tsx",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/config/Experience",
+            "line": 1
+        },
+        {
+            "source": "src/components/experience/ExperienceCard.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 2
+        },
+        {
+            "source": "src/components/experience/ExperienceList.tsx",
+            "target": "src/components/experience/ExperienceCard.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./ExperienceCard",
+            "line": 4
+        },
+        {
+            "source": "src/components/experience/ExperienceList.tsx",
+            "target": "src/config/Experience.tsx",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/config/Experience",
+            "line": 1
+        },
+        {
+            "source": "src/components/landing/About.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/About.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/About.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/About.tsx",
+            "target": "src/config/About.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/About",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/About.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/components/blog/BlogCard.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../blog/BlogCard",
+            "line": 6
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button-variants",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/Blog.tsx",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/CTA.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/CTA.tsx",
+            "target": "src/components/ui/dialog.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/dialog",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/CTA.tsx",
+            "target": "src/config/CTA.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/CTA",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/CTA.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 4
+        },
+        {
+            "source": "src/components/landing/CTA.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 5
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 6
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/components/experience/ExperienceCard.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../experience/ExperienceCard",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button-variants",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/Experience.tsx",
+            "target": "src/config/Experience.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Experience",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/components/landing/GitHubCalendarClient.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./GitHubCalendarClient",
+            "line": 11
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/components/svgs/GitHubIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/GitHubIcon",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button-variants",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/config/GitHub.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/GitHub",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/GitHub.tsx",
+            "target": "src/lib/github.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/lib/github",
+            "line": 4
+        },
+        {
+            "source": "src/components/landing/GitHubCalendarClient.tsx",
+            "target": "src/config/GitHub.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/GitHub",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/GitHubCalendarClient.tsx",
+            "target": "src/lib/github.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/github",
+            "line": 4
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/common/Skill.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Skill",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/svgs/Chat.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Chat",
+            "line": 12
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/svgs/CV.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/CV",
+            "line": 11
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button-variants",
+            "line": 13
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 14
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Hero",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/Hero.tsx",
+            "target": "src/lib/hero.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/hero",
+            "line": 4
+        },
+        {
+            "source": "src/components/landing/Journey.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/Journey.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/Journey.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/Journey.tsx",
+            "target": "src/config/Journey.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Journey",
+            "line": 3
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 5
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 6
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/components/landing/LeetCodeChartClient.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./LeetCodeChartClient",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/config/LeetCode.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/LeetCode",
+            "line": 1
+        },
+        {
+            "source": "src/components/landing/LeetCode.tsx",
+            "target": "src/lib/leetcode.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/leetcode",
+            "line": 2
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/components/common/Container.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Container",
+            "line": 6
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/components/common/SectionHeading.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/SectionHeading",
+            "line": 7
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 8
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/components/projects/ProjectList.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../projects/ProjectList",
+            "line": 9
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/button-variants",
+            "line": 10
+        },
+        {
+            "source": "src/components/landing/Projects.tsx",
+            "target": "src/config/Projects.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Projects",
+            "line": 3
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/svgs/ArrowRight.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/ArrowRight",
+            "line": 23
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/svgs/GitHubIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/GitHubIcon",
+            "line": 24
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/svgs/PlayCircle.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/PlayCircle",
+            "line": 25
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/svgs/Website.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Website",
+            "line": 26
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/ui/card.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/card",
+            "line": 3
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/ui/dialog.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/dialog",
+            "line": 9
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../ui/tooltip",
+            "line": 27
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/hooks/use-umami.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-umami",
+            "line": 15
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 16
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/types/analytics.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/analytics",
+            "line": 17
+        },
+        {
+            "source": "src/components/projects/ProjectCard.tsx",
+            "target": "src/types/project.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/project",
+            "line": 18
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/blog/CodeCopyButton.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../blog/CodeCopyButton",
+            "line": 12
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 1
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/GSAP.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/GSAP",
+            "line": 2
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/MongoDB.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/MongoDB",
+            "line": 3
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/NextJs.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NextJs",
+            "line": 4
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/ReactIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ReactIcon",
+            "line": 5
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/Tailwindcss.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Tailwindcss",
+            "line": 6
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/technologies/TypeScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TypeScript",
+            "line": 7
+        },
+        {
+            "source": "src/components/projects/ProjectComponents.tsx",
+            "target": "src/components/ui/badge.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/badge",
+            "line": 8
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/common/Reveal",
+            "line": 1
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 10
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/projects/ProjectComponents.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./ProjectComponents",
+            "line": 13
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/svgs/GitHubIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/GitHubIcon",
+            "line": 11
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/svgs/Website.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/Website",
+            "line": 12
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/ui/badge.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/badge",
+            "line": 2
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/projects/ProjectContent.tsx",
+            "target": "src/types/project.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/project",
+            "line": 4
+        },
+        {
+            "source": "src/components/projects/ProjectList.tsx",
+            "target": "src/components/projects/ProjectCard.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./ProjectCard",
+            "line": 4
+        },
+        {
+            "source": "src/components/projects/ProjectList.tsx",
+            "target": "src/types/project.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/project",
+            "line": 1
+        },
+        {
+            "source": "src/components/projects/ProjectNavigation.tsx",
+            "target": "src/components/common/Reveal.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/Reveal",
+            "line": 3
+        },
+        {
+            "source": "src/components/projects/ProjectNavigation.tsx",
+            "target": "src/components/common/TrackedLink.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../common/TrackedLink",
+            "line": 4
+        },
+        {
+            "source": "src/components/projects/ProjectNavigation.tsx",
+            "target": "src/components/svgs/ArrowLeft.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/ArrowLeft",
+            "line": 5
+        },
+        {
+            "source": "src/components/projects/ProjectNavigation.tsx",
+            "target": "src/components/svgs/ArrowUUpRight.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "../svgs/ArrowUUpRight",
+            "line": 6
+        },
+        {
+            "source": "src/components/projects/ProjectNavigation.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button-variants",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/accordion.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/alert-dialog.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/alert-dialog.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/alert.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/avatar.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/badge.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/breadcrumb.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/button.tsx",
+            "target": "src/components/ui/button-variants.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./button-variants",
+            "line": 8
+        },
+        {
+            "source": "src/components/ui/button.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/calendar.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/calendar.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/card.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/carousel.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/carousel.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/checkbox.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/command.tsx",
+            "target": "src/components/ui/dialog.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/dialog",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/command.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 10
+        },
+        {
+            "source": "src/components/ui/context-menu.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/dialog.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/dialog.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/drawer.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/dropdown-menu.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/expandable-chat.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/expandable-chat.tsx",
+            "target": "src/hooks/use-haptic-feedback.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-haptic-feedback",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/expandable-chat.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 5
+        },
+        {
+            "source": "src/components/ui/form.tsx",
+            "target": "src/components/ui/label.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/label",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/form.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/hover-card.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/input-otp.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/input.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/label.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/menubar.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/navigation-menu.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/pagination.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/pagination.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 2
+        },
+        {
+            "source": "src/components/ui/popover.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/progress.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/radio-group.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/resizable.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/scroll-area.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/select.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/separator.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/sheet.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/button.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/button",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/input.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/input",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/separator.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/separator",
+            "line": 5
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/sheet.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/sheet",
+            "line": 6
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/skeleton.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/skeleton",
+            "line": 13
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/components/ui/tooltip.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/tooltip",
+            "line": 14
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/hooks/use-mobile.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/hooks/use-mobile",
+            "line": 20
+        },
+        {
+            "source": "src/components/ui/sidebar.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 21
+        },
+        {
+            "source": "src/components/ui/skeleton.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/slider.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/switch.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/table.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/tabs.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/textarea.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 1
+        },
+        {
+            "source": "src/components/ui/toggle-group.tsx",
+            "target": "src/components/ui/toggle.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/ui/toggle",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/toggle-group.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 4
+        },
+        {
+            "source": "src/components/ui/toggle.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/components/ui/tooltip.tsx",
+            "target": "src/lib/utils.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/lib/utils",
+            "line": 3
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/Git.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Git",
+            "line": 1
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/JavaScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/JavaScript",
+            "line": 2
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/Matplotlib.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Matplotlib",
+            "line": 3
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/NextJs.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NextJs",
+            "line": 4
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/NumPy.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NumPy",
+            "line": 5
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/Python.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Python",
+            "line": 6
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/ReactIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ReactIcon",
+            "line": 7
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/ScikitLearn.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ScikitLearn",
+            "line": 8
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/Tailwindcss.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Tailwindcss",
+            "line": 9
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/TensorFlow.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TensorFlow",
+            "line": 10
+        },
+        {
+            "source": "src/config/About.tsx",
+            "target": "src/components/technologies/TypeScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TypeScript",
+            "line": 11
+        },
+        {
+            "source": "src/config/ChatPrompt.ts",
+            "target": "src/config/About.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./About",
+            "line": 1
+        },
+        {
+            "source": "src/config/ChatPrompt.ts",
+            "target": "src/config/Experience.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Experience",
+            "line": 2
+        },
+        {
+            "source": "src/config/ChatPrompt.ts",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Hero",
+            "line": 3
+        },
+        {
+            "source": "src/config/ChatPrompt.ts",
+            "target": "src/config/Projects.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Projects",
+            "line": 4
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/Librosa.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Librosa",
+            "line": 1
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/Matplotlib.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Matplotlib",
+            "line": 2
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/NumPy.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NumPy",
+            "line": 3
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/Python.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Python",
+            "line": 4
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/ScikitLearn.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ScikitLearn",
+            "line": 5
+        },
+        {
+            "source": "src/config/Experience.tsx",
+            "target": "src/components/technologies/TensorFlow.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TensorFlow",
+            "line": 6
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/svgs/GitHubIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/GitHubIcon",
+            "line": 1
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/svgs/LinkedInIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/LinkedInIcon",
+            "line": 2
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/svgs/MailIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/MailIcon",
+            "line": 3
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/svgs/XIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/XIcon",
+            "line": 4
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/Git.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Git",
+            "line": 6
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/GitHub.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/GitHub",
+            "line": 7
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/GSAP.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/GSAP",
+            "line": 5
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/JavaScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/JavaScript",
+            "line": 8
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/MongoDB.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/MongoDB",
+            "line": 9
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/NextJs.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NextJs",
+            "line": 10
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/Python.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Python",
+            "line": 11
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/ReactIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ReactIcon",
+            "line": 12
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/Supabase.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Supabase",
+            "line": 13
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/Tailwindcss.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Tailwindcss",
+            "line": 14
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/TensorFlow.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TensorFlow",
+            "line": 15
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/TypeScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TypeScript",
+            "line": 16
+        },
+        {
+            "source": "src/config/Hero.tsx",
+            "target": "src/components/technologies/Vercel.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Vercel",
+            "line": 17
+        },
+        {
+            "source": "src/config/Journey.tsx",
+            "target": "src/components/svgs/Calender.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/svgs/Calender",
+            "line": 1
+        },
+        {
+            "source": "src/config/Meta.tsx",
+            "target": "src/config/About.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./About",
+            "line": 1
+        },
+        {
+            "source": "src/config/Meta.tsx",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "./Hero",
+            "line": 2
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/GSAP.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/GSAP",
+            "line": 1
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/JavaScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/JavaScript",
+            "line": 2
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/MongoDB.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/MongoDB",
+            "line": 3
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/NextJs.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/NextJs",
+            "line": 4
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/Python.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Python",
+            "line": 5
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/ReactIcon.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/ReactIcon",
+            "line": 6
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/Tailwindcss.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/Tailwindcss",
+            "line": 7
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/components/technologies/TypeScript.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/components/technologies/TypeScript",
+            "line": 8
+        },
+        {
+            "source": "src/config/Projects.tsx",
+            "target": "src/types/project.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/project",
+            "line": 9
+        },
+        {
+            "source": "src/hooks/use-umami.ts",
+            "target": "src/types/analytics.ts",
+            "kind": "import",
+            "typeOnly": true,
+            "specifier": "@/types/analytics",
+            "line": 3
+        },
+        {
+            "source": "src/lib/blog.ts",
+            "target": "src/types/blog.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/blog",
+            "line": 1
+        },
+        {
+            "source": "src/lib/github.ts",
+            "target": "src/config/GitHub.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/GitHub",
+            "line": 1
+        },
+        {
+            "source": "src/lib/hero.ts",
+            "target": "src/config/Hero.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Hero",
+            "line": 1
+        },
+        {
+            "source": "src/lib/leetcode.ts",
+            "target": "src/config/LeetCode.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/LeetCode",
+            "line": 1
+        },
+        {
+            "source": "src/lib/project.ts",
+            "target": "src/config/Projects.tsx",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/config/Projects",
+            "line": 1
+        },
+        {
+            "source": "src/lib/project.ts",
+            "target": "src/types/project.ts",
+            "kind": "import",
+            "typeOnly": false,
+            "specifier": "@/types/project",
+            "line": 2
+        }
+    ],
+    "coverage": {
+        "files": {
+            "found": 203,
+            "parsed": 201,
+            "skipped": 2,
+            "skippedFiles": [
+                {
+                    "path": "next-env.d.ts",
+                    "reason": "declaration-file",
+                    "detail": "types only, no runtime imports"
+                },
+                {
+                    "path": "src/global.d.ts",
+                    "reason": "declaration-file",
+                    "detail": "types only, no runtime imports"
+                }
+            ],
+            "excludedDirectories": [
+                {
+                    "path": ".git",
+                    "reason": "dot-directory"
+                },
+                {
+                    "path": ".github",
+                    "reason": "dot-directory"
+                },
+                {
+                    "path": ".husky",
+                    "reason": "dot-directory"
+                },
+                {
+                    "path": ".next",
+                    "reason": "dot-directory"
+                },
+                {
+                    "path": "node_modules",
+                    "reason": "dependency directory"
+                }
+            ]
+        },
+        "imports": {
+            "total": {
+                "seen": 659,
+                "internal": 378,
+                "external": 280,
+                "excluded": 1,
+                "unresolved": 0
+            },
+            "byKind": {
+                "import": {
+                    "seen": 657,
+                    "internal": 378,
+                    "external": 278,
+                    "excluded": 1,
+                    "unresolved": 0
+                },
+                "re-export": {
+                    "seen": 1,
+                    "internal": 0,
+                    "external": 1,
+                    "excluded": 0,
+                    "unresolved": 0
+                },
+                "dynamic-import": {
+                    "seen": 1,
+                    "internal": 0,
+                    "external": 1,
+                    "excluded": 0,
+                    "unresolved": 0
+                }
+            },
+            "external": {
+                "package": 272,
+                "builtin": 8,
+                "outside-root": 0
+            },
+            "excluded": {
+                "non-code-file": 1
+            },
+            "unresolvedByReason": {},
+            "unresolved": []
+        }
+    },
+    "configs": [
+        {
+            "path": "tsconfig.json",
+            "errors": []
+        }
+    ]
+}
