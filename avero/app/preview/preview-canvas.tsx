@@ -64,10 +64,10 @@ export function PreviewCanvas({
             const targetOffset =
                 index === -1 ? 0 : clampOffset(index - Math.floor(MAX_ROWS / 2), ranked.length);
 
+            setRefit((r) => r + 1);
             setOpen((prev) => {
                 const current = prev.get(id);
                 if (current === undefined) {
-                    setRefit((r) => r + 1);
                     return new Map(prev).set(id, targetOffset);
                 }
                 if (index !== -1 && (index < current || index >= current + MAX_ROWS)) {
