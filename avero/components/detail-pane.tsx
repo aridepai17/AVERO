@@ -38,6 +38,7 @@ type Props = {
 
 export function DetailPane(props: Props) {
     const { selection, folding, byPath } = props;
+    const fanByDir = useMemo(() => groupFan(folding, props.edges), [folding, props.edges]);
 
     // Whether a path is what the pointer is over, on the map or in here. A
     // hovered folder marks every file inside it.
@@ -82,13 +83,12 @@ export function DetailPane(props: Props) {
             onTab={props.onTab}
             explanation={<ExplanationEmptyState kind="folder" />}
         >
-            <GroupStructure files={group.files} fan={groupFanOf(folding, props.edges, group.dir)} />
+            <GroupStructure
+                files={group.files}
+                fan={fanByDir.get(group.dir) ?? { fanIn: 0, fanOut: 0 }}
+            />
         </Selected>
     );
-}
-
-function groupFanOf(folding: Folding, edges: readonly Edge[], dir: string) {
-    return groupFan(folding, edges).get(dir) ?? { fanIn: 0, fanOut: 0 };
 }
 
 type PathActions = {
