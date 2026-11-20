@@ -2,21 +2,34 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { CategoryRail } from '@/components/category-rail';
+import { DetailPane, type RepositoryFacts, type Tab } from '@/components/detail-pane';
 import { DependencyMap } from '@/components/map/dependency-map';
 import { Shell } from '@/components/shell';
 import { foldDirectories } from '@/lib/graph/fold';
 import type { Selection } from '@/lib/graph/highlight';
+import { clampOffset, groupId, MAX_ROWS, rankGroupFiles } from '@/lib/graph/view';
 import type { Edge, ParsedFile } from '@/lib/parser/types';
 
-export function PreviewCanvas({ files, edges }: { files: ParsedFile[]; edges: Edge[] }) {
+export function PreviewCanvas({
+    files,
+    edges,
+    repository,
+}: {
+    files: ParsedFile[];
+    edges: Edge[];
+    repository: RepositoryFacts;
+}) {
     const folding = useMemo(() => foldDirectories(files), [files]);
+    const byPath = useMemo(() => new Map(files.map((f) => [f.path, f])), [files]);
     const [open, setOpen] = useState<Map<string, number>>(() => new Map());
     const [selection, setSelection] = useState<Selection>(null);
     const [hover, setHover] = useState<Selection>(null);
+    const [tab, setTab] = useState<Tab>('structure');
     const [refit, setRefit] = useState(0);
 
     const handleOpen = useCallback((id: string) => {
         setOpen((prev) => new Map(prev).set(id, 0));
+        setSelection({ kind: 'group', id });
         setRefit((r) => r + 1);
     }, []);
 
@@ -34,6 +47,37 @@ export function PreviewCanvas({ files, edges }: { files: ParsedFile[]; edges: Ed
             prev?.kind === 'file' && prev.path === path ? null : { kind: 'file', path },
         );
     }, []);
+
+    const handleReveal = useCallback(
+        (path: string) => {
+            setSelection({ kind: 'file', path });
+            setHover(null);
+
+            const dir = folding.groupOf.get(path);
+            if (dir === undefined) return;
+            const group = folding.groups.find((g) => g.dir === dir);
+            if (!group) return;
+
+            const id = groupId(dir);
+            const ranked = rankGroupFiles(group, byPath);
+            const index = ranked.indexOf(path);
+            const targetOffset =
+                index === -1 ? 0 : clampOffset(index - Math.floor(MAX_ROWS / 2), ranked.length);
+
+            setRefit((r) => r + 1);
+            setOpen((prev) => {
+                const current = prev.get(id);
+                if (current === undefined) {
+                    return new Map(prev).set(id, targetOffset);
+                }
+                if (index !== -1 && (index < current || index >= current + MAX_ROWS)) {
+                    return new Map(prev).set(id, targetOffset);
+                }
+                return prev;
+            });
+        },
+        [folding, byPath],
+    );
 
     const handleScroll = useCallback((id: string, offset: number) => {
         setOpen((prev) => (prev.has(id) ? new Map(prev).set(id, offset) : prev));
@@ -59,6 +103,21 @@ export function PreviewCanvas({ files, edges }: { files: ParsedFile[]; edges: Ed
                     onScroll={handleScroll}
                     onHover={setHover}
                     onDeselect={handleDeselect}
+                />
+            }
+            detail={
+                <DetailPane
+                    files={files}
+                    byPath={byPath}
+                    edges={edges}
+                    folding={folding}
+                    repository={repository}
+                    selection={selection}
+                    hover={hover}
+                    tab={tab}
+                    onTab={setTab}
+                    onReveal={handleReveal}
+                    onHover={setHover}
                 />
             }
         />
