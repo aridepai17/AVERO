@@ -11,6 +11,11 @@ jobs:
         steps:
             - name: Query analyses table
               run: |
-                  curl -f -s -o /dev/null \
+                  STATUS=$(curl -s -o response.txt -w "%{http_code}" \
                     -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-                    "${{ secrets.SUPABASE_URL }}/rest/v1/analyses?select=id&limit=1"
+                    "${{ secrets.SUPABASE_URL }}/rest/v1/analyses?select=*&limit=1")
+                  echo "HTTP $STATUS"
+                  if [ "$STATUS" -ge 400 ]; then
+                    cat response.txt
+                    exit 1
+                  fi
