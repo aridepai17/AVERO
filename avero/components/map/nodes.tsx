@@ -72,7 +72,7 @@ export function FoldedNodeView({ id, data }: NodeProps<FoldedNode>) {
             title={data.dir}
             onMouseEnter={() => hover({ kind: 'group', id })}
             onMouseLeave={() => hover(null)}
-            className={`flex size-full cursor-pointer flex-col justify-center gap-[2px] rounded-[4px] border bg-surface ${
+            className={`bg-surface flex size-full cursor-pointer flex-col justify-center gap-[2px] rounded-[4px] border ${
                 isHovered ? 'border-accent' : 'border-line'
             } ${dim ? DIM : ''}`}
             style={{ paddingInline: PAD_X }}
@@ -83,7 +83,7 @@ export function FoldedNodeView({ id, data }: NodeProps<FoldedNode>) {
                 className={anchor}
                 isConnectable={false}
             />
-            <span className="truncate font-mono text-[11px] leading-[16px] text-fg">
+            <span className="text-fg truncate font-mono text-[11px] leading-[16px]">
                 {data.label}
             </span>
             <Meta
@@ -135,7 +135,7 @@ export function PanelNodeView({ id, data }: NodeProps<PanelNode>) {
 
     return (
         <div
-            className={`flex size-full flex-col overflow-hidden rounded-[4px] border bg-surface ${
+            className={`bg-surface flex size-full flex-col overflow-hidden rounded-[4px] border ${
                 selected ? 'border-accent' : 'border-fg-muted'
             } ${anyLit ? '' : DIM}`}
         >
@@ -145,12 +145,12 @@ export function PanelNodeView({ id, data }: NodeProps<PanelNode>) {
                 onMouseEnter={() => hover({ kind: 'group', id })}
                 onMouseLeave={() => hover(null)}
                 title={`${data.dir} — click to fold`}
-                className={`flex shrink-0 flex-col justify-center gap-[2px] border-b border-line bg-raised text-left hover:bg-line ${
+                className={`border-line bg-raised hover:bg-line flex shrink-0 flex-col justify-center gap-[2px] border-b text-left ${
                     whole || !anyLit ? '' : DIM
                 }`}
                 style={{ height: PANEL_HEADER_HEIGHT, paddingInline: PAD_X }}
             >
-                <span className="truncate font-mono text-[11px] leading-[16px] font-semibold text-fg">
+                <span className="text-fg truncate font-mono text-[11px] leading-[16px] font-semibold">
                     {data.label}
                 </span>
                 <Meta
@@ -201,7 +201,7 @@ export function PanelNodeView({ id, data }: NodeProps<PanelNode>) {
                                 style={{ paddingInline: PAD_X }}
                             >
                                 <CategorySwatch category={categoryOf(row.path)} />
-                                <span className="min-w-0 flex-1 truncate font-mono text-fg">
+                                <span className="text-fg min-w-0 flex-1 truncate font-mono">
                                     {row.label}
                                 </span>
                                 <Fan fanIn={row.fanIn} fanOut={row.fanOut} />
@@ -255,7 +255,7 @@ function OffscreenRow(props: {
                 type="button"
                 onClick={props.onClick}
                 disabled={props.count === 0}
-                className={`flex size-full items-center text-left text-[10px] text-fg-muted tabular-nums enabled:hover:bg-raised enabled:hover:text-fg disabled:opacity-50 ${
+                className={`text-fg-muted enabled:hover:bg-raised enabled:hover:text-fg flex size-full items-center text-left text-[10px] tabular-nums disabled:opacity-50 ${
                     props.hovered ? HOVER_RING : props.dim ? DIM : ''
                 }`}
                 style={{ paddingInline: PAD_X }}
@@ -283,7 +283,7 @@ function Meta(props: {
 }) {
     const { fileCount, fanIn, fanOut, match } = props;
     return (
-        <span className="flex items-center gap-[8px] text-[10px] leading-[12px] text-fg-muted tabular-nums">
+        <span className="text-fg-muted flex items-center gap-[8px] text-[10px] leading-[12px] tabular-nums">
             {match ? (
                 <span
                     className="flex items-center gap-[4px]"

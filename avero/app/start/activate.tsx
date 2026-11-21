@@ -22,8 +22,8 @@ export function Activate() {
     }, [setActive, router]);
 
     return error ? (
-        <p className="text-xs text-fg">Couldn&apos;t set up an organization: {error}</p>
+        <p className="text-fg text-xs">Couldn&apos;t set up an organization: {error}</p>
     ) : (
-        <p className="text-xs text-fg-muted">Setting up your organization…</p>
+        <p className="text-fg-muted text-xs">Setting up your organization…</p>
     );
 }

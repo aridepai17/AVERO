@@ -109,9 +109,9 @@ function RepositorySummary({ files, repository, paths }: Props & { paths: PathAc
 
     return (
         <div className="pb-3">
-            <header className="border-b border-line px-3 py-2">
+            <header className="border-line border-b px-3 py-2">
                 <h2 className="font-mono text-[13px] font-semibold break-all">{repository.name}</h2>
-                <p className="mt-0.5 text-[11px] text-fg-muted">
+                <p className="text-fg-muted mt-0.5 text-[11px]">
                     Framework{' '}
                     <span className="text-fg">
                         {rootAdapter === 'none' ? 'none detected' : rootAdapter}
@@ -119,14 +119,14 @@ function RepositorySummary({ files, repository, paths }: Props & { paths: PathAc
                     {nested.length > 0 && ' at the root'}
                 </p>
                 {nested.map((p) => (
-                    <p key={p.path} className="text-[11px] text-fg-muted">
+                    <p key={p.path} className="text-fg-muted text-[11px]">
                         <span className="text-fg">{p.adapter}</span> in{' '}
                         <span className="font-mono">{p.path}/</span>
                     </p>
                 ))}
             </header>
 
-            <dl className="grid grid-cols-3 border-b border-line">
+            <dl className="border-line grid grid-cols-3 border-b">
                 <Count
                     label="Files"
                     value={files.length}
@@ -162,11 +162,11 @@ function RepositorySummary({ files, repository, paths }: Props & { paths: PathAc
             />
 
             <section className="mt-3 px-3">
-                <h3 className="flex items-baseline justify-between text-[11px] text-fg-muted">
+                <h3 className="text-fg-muted flex items-baseline justify-between text-[11px]">
                     <span>Unidentified by convention</span>
                     <span className="text-fg tabular-nums">{files.length}</span>
                 </h3>
-                <p className="mt-0.5 text-[11px] text-fg-muted tabular-nums">
+                <p className="text-fg-muted mt-0.5 text-[11px] tabular-nums">
                     0 matched a framework, tool or test convention; only imports reach the rest.
                 </p>
             </section>
@@ -186,12 +186,12 @@ function Count({
     title?: string;
 }) {
     return (
-        <div className="border-r border-line px-3 py-2 last:border-r-0" title={title}>
-            <dt className="text-[11px] text-fg-muted">{label}</dt>
+        <div className="border-line border-r px-3 py-2 last:border-r-0" title={title}>
+            <dt className="text-fg-muted text-[11px]">{label}</dt>
             <dd className="text-[15px] leading-5 tabular-nums">
                 {value ?? <span className="text-fg-muted">—</span>}
             </dd>
-            {note && <dd className="text-[10px] text-fg-muted tabular-nums">{note}</dd>}
+            {note && <dd className="text-fg-muted text-[10px] tabular-nums">{note}</dd>}
         </div>
     );
 }
@@ -206,13 +206,13 @@ function RankedList(props: {
     const { files, total } = props.ranked;
     return (
         <section className="mt-3">
-            <h3 className="flex items-baseline gap-1.5 px-3 pb-0.5 text-[11px] text-fg-muted">
+            <h3 className="text-fg-muted flex items-baseline gap-1.5 px-3 pb-0.5 text-[11px]">
                 <span className="text-fg">{props.title}</span>
                 <span>{props.hint}</span>
                 <span className="ml-auto tabular-nums">{total}</span>
             </h3>
             {files.length === 0 ? (
-                <p className="px-3 text-[11px] text-fg-muted">None.</p>
+                <p className="text-fg-muted px-3 text-[11px]">None.</p>
             ) : (
                 <ul>
                     {files.map((f) => (
@@ -226,7 +226,7 @@ function RankedList(props: {
                 </ul>
             )}
             {total > files.length && (
-                <p className="px-3 pt-0.5 text-[10px] text-fg-muted tabular-nums">
+                <p className="text-fg-muted px-3 pt-0.5 text-[10px] tabular-nums">
                     {total - files.length} more not listed
                 </p>
             )}
@@ -246,8 +246,8 @@ function Selected(props: {
 }) {
     return (
         <div className="pb-3">
-            <header className="border-b border-line px-3 pt-2">
-                <p className="text-[10px] text-fg-muted">{props.caption}</p>
+            <header className="border-line border-b px-3 pt-2">
+                <p className="text-fg-muted text-[10px]">{props.caption}</p>
                 <h2 className="leading-4">{props.title}</h2>
                 <div role="tablist" className="mt-2 flex gap-3 text-[11px]">
                     <TabButton
@@ -288,7 +288,7 @@ function TabButton({
             aria-selected={active}
             onClick={() => onTab(tab)}
             className={`-mb-px border-b pb-1.5 ${
-                active ? 'border-accent text-fg' : 'border-transparent text-fg-muted hover:text-fg'
+                active ? 'border-accent text-fg' : 'text-fg-muted hover:text-fg border-transparent'
             }`}
         >
             {label}
@@ -298,7 +298,7 @@ function TabButton({
 
 function ExplanationEmptyState({ kind }: { kind: 'file' | 'folder' }) {
     return (
-        <div className="px-3 py-4 text-[11px] text-fg-muted">
+        <div className="text-fg-muted px-3 py-4 text-[11px]">
             <p className="text-fg">No explanation yet.</p>
             <p className="mt-1">
                 An explanation for this {kind} will appear here once a model call generates it.
@@ -336,7 +336,7 @@ function FileStructure(props: { file: ParsedFile; edges: Edge[]; paths: PathActi
     // Counts are the lengths of the lists below them, so they can't disagree.
     return (
         <>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 border-b border-line px-3 py-2 text-[11px]">
+            <dl className="border-line grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 border-b px-3 py-2 text-[11px]">
                 <Fact label="Kind">
                     <span className="flex items-center gap-1.5 font-mono">
                         <CategorySwatch category={category} />
@@ -396,7 +396,7 @@ function NeighbourList(props: {
                 <span className="tabular-nums">{props.count}</span>
             </h3>
             {props.rows.length === 0 ? (
-                <p className="px-3 text-[11px] text-fg-muted">None.</p>
+                <p className="text-fg-muted px-3 text-[11px]">None.</p>
             ) : (
                 <ul>
                     {props.rows.map((n) => (
@@ -434,7 +434,7 @@ function GroupStructure({
     const kinds = useMemo(() => countByCategory(files), [files]);
     return (
         <>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 border-b border-line px-3 py-2 text-[11px]">
+            <dl className="border-line grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 border-b px-3 py-2 text-[11px]">
                 <Fact label="Files">{files.length}</Fact>
                 <Fact label="Imported from outside by">
                     <span className="text-incoming">{fan.fanIn}</span>{' '}
@@ -496,7 +496,7 @@ function PathRow({
             >
                 <span className="flex min-w-0 flex-1 font-mono">
                     {slash >= 0 && (
-                        <span className="truncate text-fg-muted">{path.slice(0, slash + 1)}</span>
+                        <span className="text-fg-muted truncate">{path.slice(0, slash + 1)}</span>
                     )}
                     <span className="shrink-0">{path.slice(slash + 1)}</span>
                 </span>

@@ -34,7 +34,7 @@ export function ThemeControl({ initial }: { initial: Theme }) {
         <div
             role="radiogroup"
             aria-label="Theme"
-            className="flex h-6 items-center rounded border border-line text-[0.6875rem]"
+            className="border-line flex h-6 items-center rounded border text-[0.6875rem]"
         >
             {THEMES.map((t, index) => {
                 const selected = theme === t;

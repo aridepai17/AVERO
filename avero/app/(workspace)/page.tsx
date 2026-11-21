@@ -32,15 +32,15 @@ export default async function DashboardPage() {
 
     return (
         <div className="flex h-full flex-col">
-            <div className="flex h-9 shrink-0 items-center gap-4 border-b border-line px-3">
+            <div className="border-line flex h-9 shrink-0 items-center gap-4 border-b px-3">
                 <h1 className="text-[13px] font-semibold">{orgName}</h1>
-                <span className="text-xs text-fg-muted tabular-nums">
+                <span className="text-fg-muted text-xs tabular-nums">
                     {rows.length === LIST_LIMIT
                         ? `Latest ${LIST_LIMIT} analyses`
                         : `${rows.length} ${rows.length === 1 ? 'analysis' : 'analyses'}`}
                 </span>
                 {rows.length > 0 && (
-                    <ul className="ml-auto flex items-center gap-3 text-xs text-fg-muted tabular-nums">
+                    <ul className="text-fg-muted ml-auto flex items-center gap-3 text-xs tabular-nums">
                         {TALLY_ORDER.filter((s) => counts.has(s)).map((s) => (
                             <li key={s} className="flex items-center gap-1.5">
                                 <StateMark
@@ -55,7 +55,7 @@ export default async function DashboardPage() {
             </div>
 
             {rows.length === 0 ? (
-                <div className="px-3 py-10 text-xs text-fg-muted">
+                <div className="text-fg-muted px-3 py-10 text-xs">
                     <p className="text-fg">No analyses yet.</p>
                     <p className="mt-1">Analyses for this organization will appear here.</p>
                 </div>
@@ -69,8 +69,8 @@ export default async function DashboardPage() {
                             <col className="w-20" />
                             <col className="hidden w-20 sm:table-column" />
                         </colgroup>
-                        <thead className="sticky top-0 bg-canvas text-left text-fg-muted">
-                            <tr className="h-7 border-b border-line">
+                        <thead className="bg-canvas text-fg-muted sticky top-0 text-left">
+                            <tr className="border-line h-7 border-b">
                                 <th className="px-3 font-normal">Repository</th>
                                 <th className="px-3 font-normal">State</th>
                                 <th className="hidden px-3 font-normal sm:table-cell">Commit</th>

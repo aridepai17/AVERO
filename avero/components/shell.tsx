@@ -26,18 +26,18 @@ export function Shell({
             {hasRail && (
                 <nav
                     aria-label="Categories"
-                    className="hidden min-h-0 overflow-y-auto border-r border-line bg-surface md:block"
+                    className="border-line bg-surface hidden min-h-0 overflow-y-auto border-r md:block"
                 >
                     {rail}
                 </nav>
             )}
-            <section aria-label="Map" className="relative min-h-0 min-w-0 bg-canvas">
+            <section aria-label="Map" className="bg-canvas relative min-h-0 min-w-0">
                 {map}
             </section>
             {hasDetail && (
                 <aside
                     aria-label="Details"
-                    className={`hidden min-h-0 overflow-y-auto border-l border-line bg-surface ${hasRail ? 'lg:block' : 'md:block'}`}
+                    className={`border-line bg-surface hidden min-h-0 overflow-y-auto border-l ${hasRail ? 'lg:block' : 'md:block'}`}
                 >
                     {detail}
                 </aside>

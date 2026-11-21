@@ -7,7 +7,7 @@ export function CategoryRail({ files }: { files: readonly ParsedFile[] }) {
 
     return (
         <div className="py-2">
-            <h2 className="px-3 pb-1 text-[11px] text-fg-muted">
+            <h2 className="text-fg-muted px-3 pb-1 text-[11px]">
                 Categories <span className="tabular-nums">· {files.length} files</span>
             </h2>
             <ul>

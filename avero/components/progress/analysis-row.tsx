@@ -17,7 +17,7 @@ export function AnalysisRow({ row }: { row: RowData }) {
     const note = row.status === 'failed' ? row.error : null;
 
     return (
-        <tr className="border-b border-line align-top hover:bg-raised">
+        <tr className="border-line hover:bg-raised border-b align-top">
             <td className="truncate px-3 py-1.5 font-mono">
                 {row.repository ? (
                     <>
@@ -29,7 +29,7 @@ export function AnalysisRow({ row }: { row: RowData }) {
                 )}
                 {(note || row.stale) && (
                     <span
-                        className="mt-0.5 block truncate font-sans text-fg-muted"
+                        className="text-fg-muted mt-0.5 block truncate font-sans"
                         title={note ?? undefined}
                     >
                         {row.stale
@@ -46,19 +46,19 @@ export function AnalysisRow({ row }: { row: RowData }) {
                     {row.stale ? 'stale' : row.status}
                 </span>
             </td>
-            <td className="hidden px-3 py-1.5 font-mono text-fg-muted sm:table-cell">
+            <td className="text-fg-muted hidden px-3 py-1.5 font-mono sm:table-cell">
                 {row.commitSha ? (
                     <span title={row.commitSha}>{row.commitSha.slice(0, 7)}</span>
                 ) : (
                     '—'
                 )}
             </td>
-            <td className="px-3 py-1.5 text-right text-fg-muted tabular-nums">
+            <td className="text-fg-muted px-3 py-1.5 text-right tabular-nums">
                 <time dateTime={row.created.iso} title={row.created.iso}>
                     {row.created.ago}
                 </time>
             </td>
-            <td className="hidden px-3 py-1.5 text-right text-fg-muted tabular-nums sm:table-cell">
+            <td className="text-fg-muted hidden px-3 py-1.5 text-right tabular-nums sm:table-cell">
                 {row.finished ? (
                     <time dateTime={row.finished.iso} title={row.finished.iso}>
                         {row.finished.ago}
