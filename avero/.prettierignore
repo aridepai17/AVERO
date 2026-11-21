@@ -1,2 +1,6 @@
 .agents/
+.next
+node_modules
+out
+build
 pnpm-lock.yaml

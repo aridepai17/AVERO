@@ -7,10 +7,21 @@
         "build": "next build",
         "start": "next start",
         "lint": "eslint",
+        "typecheck": "tsc --noEmit",
         "parse": "node scripts/parse.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "map-counts": "node scripts/map-counts.ts"
+        "map-counts": "node scripts/map-counts.ts",
+        "prepare": "cd .. && avero/node_modules/.bin/husky avero/.husky"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx,mjs}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.{json,css,md,yml,yaml,sql}": [
+            "prettier --write"
+        ]
     },
     "dependencies": {
         "@clerk/nextjs": "^7.9.25",
@@ -30,8 +41,12 @@
         "@types/react-dom": "^19",
         "eslint": "^9",
         "eslint-config-next": "16.4.6",
+        "eslint-config-prettier": "^10.1.8",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.6.1",
         "prettier": "^3.10.1",
         "prettier-plugin-sql": "^0.20.0",
+        "prettier-plugin-tailwindcss": "^0.8.1",
         "tailwindcss": "4.3.3",
         "typescript": "^5"
     },
