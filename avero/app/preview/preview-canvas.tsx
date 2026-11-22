@@ -7,6 +7,7 @@ import { DependencyMap } from '@/components/map/dependency-map';
 import { Shell } from '@/components/shell';
 import { foldDirectories } from '@/lib/graph/fold';
 import type { Selection } from '@/lib/graph/highlight';
+import type { Direction } from '@/lib/graph/reach';
 import { clampOffset, groupId, MAX_ROWS, rankGroupFiles } from '@/lib/graph/view';
 import type { Edge, ParsedFile } from '@/lib/parser/types';
 
@@ -25,7 +26,15 @@ export function PreviewCanvas({
     const [selection, setSelection] = useState<Selection>(null);
     const [hover, setHover] = useState<Selection>(null);
     const [tab, setTab] = useState<Tab>('structure');
+    const [walk, setWalk] = useState<Direction | null>(null);
+    const [insightsOpen, setInsightsOpen] = useState(false);
+    const [category, setCategory] = useState<string | null>(null);
     const [refit, setRefit] = useState(0);
+
+    const handleToggleCategory = useCallback(
+        (c: string) => setCategory((prev) => (prev === c ? null : c)),
+        [],
+    );
 
     const handleOpen = useCallback((id: string) => {
         setOpen((prev) => new Map(prev).set(id, 0));
@@ -87,7 +96,7 @@ export function PreviewCanvas({
 
     return (
         <Shell
-            rail={<CategoryRail files={files} />}
+            rail={<CategoryRail files={files} active={category} onToggle={handleToggleCategory} />}
             map={
                 <DependencyMap
                     files={files}
@@ -97,6 +106,7 @@ export function PreviewCanvas({
                     selection={selection}
                     hover={hover}
                     refit={refit}
+                    category={category}
                     onOpen={handleOpen}
                     onClose={handleClose}
                     onSelectFile={handleSelectFile}
@@ -116,6 +126,10 @@ export function PreviewCanvas({
                     hover={hover}
                     tab={tab}
                     onTab={setTab}
+                    walk={walk}
+                    onWalk={setWalk}
+                    insightsOpen={insightsOpen}
+                    onInsightsOpen={setInsightsOpen}
                     onReveal={handleReveal}
                     onHover={setHover}
                 />
