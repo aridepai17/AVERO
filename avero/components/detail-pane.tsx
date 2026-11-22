@@ -55,6 +55,7 @@ type Props = {
 
 export function DetailPane(props: Props) {
     const { selection, folding, byPath } = props;
+    const fanByDir = useMemo(() => groupFan(folding, props.edges), [folding, props.edges]);
     const graph = useMemo(() => adjacency(props.edges), [props.edges]);
 
     // Whether a path is what the pointer is over, on the map or in here. A
@@ -107,13 +108,12 @@ export function DetailPane(props: Props) {
             onTab={props.onTab}
             explanation={<ExplanationEmptyState kind="folder" />}
         >
-            <GroupStructure files={group.files} fan={groupFanOf(folding, props.edges, group.dir)} />
+            <GroupStructure
+                files={group.files}
+                fan={fanByDir.get(group.dir) ?? { fanIn: 0, fanOut: 0 }}
+            />
         </Selected>
     );
-}
-
-function groupFanOf(folding: Folding, edges: readonly Edge[], dir: string) {
-    return groupFan(folding, edges).get(dir) ?? { fanIn: 0, fanOut: 0 };
 }
 
 type PathActions = {
@@ -136,8 +136,8 @@ function RepositorySummary({
     const rootAdapter = repository.projects[0]?.adapter ?? 'none';
     const nested = repository.projects.filter((p) => p.path !== '.' && p.adapter !== 'none');
     const byConvention = useMemo(
-        () => files.filter((f) => reachedByConvention(f.path)).length,
-        [files],
+        () => files.filter((f) => reachedByConvention(f.path, repository.projects)).length,
+        [files, repository.projects],
     );
     // Distinct file-to-file pairs, the unit every file's own counts use, so this
     // is the sum of what the pane says for each file.
@@ -221,7 +221,14 @@ function RepositorySummary({
                     <span className="text-fg">Insights</span>
                     <span className="text-fg-muted">facts from the import graph</span>
                 </button>
-                {insightsOpen && <InsightList files={files} edges={edges} paths={paths} />}
+                {insightsOpen && (
+                    <InsightList
+                        files={files}
+                        edges={edges}
+                        projects={repository.projects}
+                        paths={paths}
+                    />
+                )}
             </section>
         </div>
     );
@@ -232,13 +239,15 @@ function RepositorySummary({
 function InsightList({
     files,
     edges,
+    projects,
     paths,
 }: {
     files: ParsedFile[];
     edges: Edge[];
+    projects: readonly Project[];
     paths: PathActions;
 }) {
-    const insights = useMemo(() => findInsights(files, edges), [files, edges]);
+    const insights = useMemo(() => findInsights(files, edges, projects), [files, edges, projects]);
     const { heavilyImported } = insights;
     // Files nothing imports leads: for someone new here that one explains the
     // most. Loops and long files read closer to a verdict, so they come last.
