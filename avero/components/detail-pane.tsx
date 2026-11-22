@@ -1,10 +1,23 @@
 'use client';
 
-import { useMemo, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { categoryLabel, categoryOf, countByCategory } from '@/lib/graph/categories';
-import { neighboursOf, rankRepository, type Neighbour, type Ranked } from '@/lib/graph/detail';
+import {
+    neighboursOf,
+    rankRepository,
+    SUMMARY_LIMIT,
+    type Neighbour,
+    type Ranked,
+} from '@/lib/graph/detail';
 import type { Folding } from '@/lib/graph/fold';
 import type { Selection } from '@/lib/graph/highlight';
+import {
+    findInsights,
+    INSIGHT_SENTENCES,
+    reachedByConvention,
+    type Cycle,
+} from '@/lib/graph/insights';
+import { adjacency, DEFAULT_DEPTH, reach, type Adjacency, type Direction } from '@/lib/graph/reach';
 import { groupFan, groupId } from '@/lib/graph/view';
 import type { Edge, ParsedFile, Project } from '@/lib/parser/types';
 import { CategorySwatch } from './map/swatch';
@@ -32,6 +45,10 @@ type Props = {
     hover: Selection;
     tab: Tab;
     onTab: (tab: Tab) => void;
+    walk: Direction | null;
+    onWalk: (walk: Direction | null) => void;
+    insightsOpen: boolean;
+    onInsightsOpen: (open: boolean) => void;
     onReveal: (path: string) => void;
     onHover: (hover: Selection) => void;
 };
@@ -39,6 +56,7 @@ type Props = {
 export function DetailPane(props: Props) {
     const { selection, folding, byPath } = props;
     const fanByDir = useMemo(() => groupFan(folding, props.edges), [folding, props.edges]);
+    const graph = useMemo(() => adjacency(props.edges), [props.edges]);
 
     // Whether a path is what the pointer is over, on the map or in here. A
     // hovered folder marks every file inside it.
@@ -64,7 +82,14 @@ export function DetailPane(props: Props) {
                 onTab={props.onTab}
                 explanation={<ExplanationEmptyState kind="file" />}
             >
-                <FileStructure file={file} edges={props.edges} paths={paths} />
+                <FileStructure
+                    file={file}
+                    edges={props.edges}
+                    graph={graph}
+                    walk={props.walk}
+                    onWalk={props.onWalk}
+                    paths={paths}
+                />
             </Selected>
         );
     }
@@ -99,10 +124,21 @@ type PathActions = {
 
 // ── Nothing selected ─────────────────────────────────────────────────────────
 
-function RepositorySummary({ files, repository, paths }: Props & { paths: PathActions }) {
+function RepositorySummary({
+    files,
+    edges,
+    repository,
+    insightsOpen,
+    onInsightsOpen,
+    paths,
+}: Props & { paths: PathActions }) {
     const ranked = useMemo(() => rankRepository(files), [files]);
     const rootAdapter = repository.projects[0]?.adapter ?? 'none';
     const nested = repository.projects.filter((p) => p.path !== '.' && p.adapter !== 'none');
+    const byConvention = useMemo(
+        () => files.filter((f) => reachedByConvention(f.path, repository.projects)).length,
+        [files, repository.projects],
+    );
     // Distinct file-to-file pairs, the unit every file's own counts use, so this
     // is the sum of what the pane says for each file.
     const imports = useMemo(() => files.reduce((n, f) => n + f.fanOut, 0), [files]);
@@ -164,13 +200,176 @@ function RepositorySummary({ files, repository, paths }: Props & { paths: PathAc
             <section className="mt-3 px-3">
                 <h3 className="text-fg-muted flex items-baseline justify-between text-[11px]">
                     <span>Unidentified by convention</span>
-                    <span className="text-fg tabular-nums">{files.length}</span>
+                    <span className="text-fg tabular-nums">{files.length - byConvention}</span>
                 </h3>
                 <p className="text-fg-muted mt-0.5 text-[11px] tabular-nums">
-                    0 matched a framework, tool or test convention; only imports reach the rest.
+                    {byConvention} matched a framework, tool or test convention; only imports reach
+                    the rest.
                 </p>
             </section>
+
+            {/* Last and closed: this pane explains the repository first, and the
+                insights are there for whoever goes looking. */}
+            <section className="border-line mt-3 border-t">
+                <button
+                    type="button"
+                    aria-expanded={insightsOpen}
+                    onClick={() => onInsightsOpen(!insightsOpen)}
+                    className="hover:bg-raised flex w-full items-baseline gap-1.5 px-3 py-2 text-left text-[11px]"
+                >
+                    <span className="text-fg-muted w-2">{insightsOpen ? '▾' : '▸'}</span>
+                    <span className="text-fg">Insights</span>
+                    <span className="text-fg-muted">facts from the import graph</span>
+                </button>
+                {insightsOpen && (
+                    <InsightList
+                        files={files}
+                        edges={edges}
+                        projects={repository.projects}
+                        paths={paths}
+                    />
+                )}
+            </section>
         </div>
+    );
+}
+
+// ── Insights ─────────────────────────────────────────────────────────────────
+
+function InsightList({
+    files,
+    edges,
+    projects,
+    paths,
+}: {
+    files: ParsedFile[];
+    edges: Edge[];
+    projects: readonly Project[];
+    paths: PathActions;
+}) {
+    const insights = useMemo(() => findInsights(files, edges, projects), [files, edges, projects]);
+    const { heavilyImported } = insights;
+    // Files nothing imports leads: for someone new here that one explains the
+    // most. Loops and long files read closer to a verdict, so they come last.
+    return (
+        <div className="pb-1">
+            <InsightSection
+                title="Nothing imports or reaches"
+                sentence={INSIGHT_SENTENCES.unimported}
+                count={insights.unimported.length}
+                items={insights.unimported}
+                render={(f) => (
+                    <PathRow
+                        key={f.path}
+                        path={f.path}
+                        paths={paths}
+                        trailing={<span className="text-outgoing">{f.fanOut}→</span>}
+                    />
+                )}
+            />
+            <InsightSection
+                title="Imported unusually often"
+                hint={`by more than ${heavilyImported.threshold}`}
+                sentence={INSIGHT_SENTENCES.heavilyImported}
+                count={heavilyImported.files.length}
+                items={heavilyImported.files}
+                render={(f) => (
+                    <PathRow
+                        key={f.path}
+                        path={f.path}
+                        paths={paths}
+                        trailing={<span className="text-incoming">←{f.fanIn}</span>}
+                    />
+                )}
+            />
+            <InsightSection
+                title="Import loops"
+                hint="type-only imports left out"
+                sentence={INSIGHT_SENTENCES.cycles}
+                count={insights.cycles.length}
+                items={insights.cycles}
+                render={(c) => <CycleRows key={c.files[0]} cycle={c} paths={paths} />}
+            />
+            <InsightSection
+                title="Long files"
+                sentence={INSIGHT_SENTENCES.long}
+                count={insights.long.length}
+                items={insights.long}
+                render={(f) => (
+                    <PathRow
+                        key={f.path}
+                        path={f.path}
+                        paths={paths}
+                        trailing={
+                            <span className="text-fg-muted">{f.lines.toLocaleString('en')}</span>
+                        }
+                    />
+                )}
+            />
+        </div>
+    );
+}
+
+function InsightSection<T>(props: {
+    title: string;
+    hint?: string;
+    sentence: string;
+    count: number;
+    items: T[];
+    render: (item: T) => ReactNode;
+}) {
+    const [all, setAll] = useState(false);
+    const shown = all ? props.items : props.items.slice(0, SUMMARY_LIMIT);
+    return (
+        <section className="mt-2">
+            <h3 className="text-fg-muted flex items-baseline gap-1.5 px-3 text-[11px]">
+                <span className="text-fg">{props.title}</span>
+                {props.hint && <span>{props.hint}</span>}
+                <span className="ml-auto tabular-nums">{props.count}</span>
+            </h3>
+            <p className="text-fg-muted px-3 pb-0.5 text-[11px]">{props.sentence}</p>
+            {props.items.length === 0 ? (
+                <p className="text-fg-muted px-3 text-[11px]">None.</p>
+            ) : (
+                <ul>{shown.map(props.render)}</ul>
+            )}
+            {props.items.length > SUMMARY_LIMIT && (
+                <button
+                    type="button"
+                    onClick={() => setAll(!all)}
+                    className="text-fg-muted hover:text-fg px-3 pt-0.5 text-[10px] tabular-nums hover:underline"
+                >
+                    {all ? 'Show fewer' : `Show all ${props.items.length}`}
+                </button>
+            )}
+        </section>
+    );
+}
+
+// One loop, in import order, so it can be walked by opening each file in turn.
+function CycleRows({ cycle, paths }: { cycle: Cycle; paths: PathActions }) {
+    return (
+        <li className="mt-1">
+            <p className="text-fg-muted px-3 text-[10px] tabular-nums">
+                {cycle.files.length} {cycle.files.length === 1 ? 'file' : 'files'}
+                {cycle.members > cycle.files.length &&
+                    `, one loop among ${cycle.members} files that all reach each other`}
+            </p>
+            <ul>
+                {cycle.files.map((f, i) => (
+                    <PathRow
+                        key={f}
+                        path={f}
+                        paths={paths}
+                        trailing={
+                            <span className="text-outgoing">
+                                {i === cycle.files.length - 1 ? '↩ first' : '↓'}
+                            </span>
+                        }
+                    />
+                ))}
+            </ul>
+        </li>
     );
 }
 
@@ -325,14 +524,20 @@ function PathTitle({ path, paths }: { path: string; paths: PathActions }) {
     );
 }
 
-function FileStructure(props: { file: ParsedFile; edges: Edge[]; paths: PathActions }) {
-    const { file, edges, paths } = props;
+function FileStructure(props: {
+    file: ParsedFile;
+    edges: Edge[];
+    graph: Adjacency;
+    walk: Direction | null;
+    onWalk: (walk: Direction | null) => void;
+    paths: PathActions;
+}) {
+    const { file, edges, graph, walk, onWalk, paths } = props;
     const { imports, importedBy } = useMemo(
         () => neighboursOf(edges, file.path),
         [edges, file.path],
     );
     const category = categoryOf(file.path);
-
     // Counts are the lengths of the lists below them, so they can't disagree.
     return (
         <>
@@ -358,6 +563,21 @@ function FileStructure(props: { file: ParsedFile; edges: Edge[]; paths: PathActi
                     {importedBy.length === 1 ? 'file' : 'files'}
                 </Fact>
             </dl>
+            <div className="border-line flex gap-1.5 border-b px-3 py-2">
+                <WalkButton
+                    direction="dependents"
+                    label="Blast radius"
+                    walk={walk}
+                    onWalk={onWalk}
+                />
+                <WalkButton
+                    direction="dependencies"
+                    label="Dependency chain"
+                    walk={walk}
+                    onWalk={onWalk}
+                />
+            </div>
+            {walk && <ReachList file={file.path} graph={graph} direction={walk} paths={paths} />}
             <NeighbourList
                 title="Imports"
                 count={<span className="text-outgoing">{imports.length}→</span>}
@@ -371,6 +591,87 @@ function FileStructure(props: { file: ParsedFile; edges: Edge[]; paths: PathActi
                 paths={paths}
             />
         </>
+    );
+}
+
+function WalkButton(props: {
+    direction: Direction;
+    label: string;
+    walk: Direction | null;
+    onWalk: (walk: Direction | null) => void;
+}) {
+    const on = props.walk === props.direction;
+    return (
+        <button
+            type="button"
+            aria-pressed={on}
+            onClick={() => props.onWalk(on ? null : props.direction)}
+            className={`rounded-[3px] border px-2 py-0.5 text-[11px] ${
+                on
+                    ? 'border-accent bg-accent/15 text-fg'
+                    : 'border-line text-fg-muted hover:bg-raised hover:text-fg'
+            }`}
+        >
+            {props.label}
+        </button>
+    );
+}
+
+// Worked out on the spot from the edges already here: no request, no spinner.
+function ReachList({
+    file,
+    graph,
+    direction,
+    paths,
+}: {
+    file: string;
+    graph: Adjacency;
+    direction: Direction;
+    paths: PathActions;
+}) {
+    const { steps, beyond } = useMemo(
+        () => reach(graph, file, direction),
+        [graph, file, direction],
+    );
+    const total = steps.reduce((n, s) => n + s.length, 0);
+    const dependents = direction === 'dependents';
+    return (
+        <section className="mt-3">
+            <h3 className="text-fg-muted flex items-baseline gap-1.5 px-3 pb-0.5 text-[11px]">
+                <span className="text-fg">{dependents ? 'Blast radius' : 'Dependency chain'}</span>
+                <span>
+                    {dependents
+                        ? 'what imports this, directly or through others'
+                        : 'what this imports, directly or through others'}
+                </span>
+                <span
+                    className={`ml-auto tabular-nums ${dependents ? 'text-incoming' : 'text-outgoing'}`}
+                >
+                    {total}
+                </span>
+            </h3>
+            {steps.map((list, i) => (
+                <div key={i}>
+                    <h4 className="text-fg-muted px-3 pt-1 text-[10px] tabular-nums">
+                        {i + 1} {i === 0 ? 'step' : 'steps'} away · {list.length}
+                    </h4>
+                    {list.length === 0 ? (
+                        <p className="text-fg-muted px-3 text-[11px]">None.</p>
+                    ) : (
+                        <ul>
+                            {list.map((p) => (
+                                <PathRow key={p} path={p} paths={paths} />
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            ))}
+            <p className="text-fg-muted px-3 pt-1 text-[10px] tabular-nums">
+                {beyond > 0
+                    ? `${beyond} more further than ${DEFAULT_DEPTH} steps, not listed.`
+                    : `Nothing further than ${DEFAULT_DEPTH} steps.`}
+            </p>
+        </section>
     );
 }
 
