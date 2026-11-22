@@ -1,4 +1,4 @@
-import type { Edge, ParsedFile } from '../parser/types';
+import type { Edge, ParsedFile, Project } from '../parser/types';
 
 // Four facts about the file and edge lists. Pure, and nothing here is worded
 // by a model: each kind says one fixed sentence, and the files under it are
@@ -58,9 +58,28 @@ const ROOT_ENTRY_CONVENTIONS = new Set([
 
 /**
  * Files reached by a framework, build tool, CLI script runner, or test runner
- * rather than an explicit import edge.
+ * rather than an explicit import edge, evaluated relative to each project root.
  */
-export function reachedByConvention(path: string): boolean {
+export function reachedByConvention(path: string, projects: readonly Project[] = []): boolean {
+    for (const relPath of relativeToProjectRoots(path, projects)) {
+        if (matchesConvention(relPath)) return true;
+    }
+    return false;
+}
+
+function relativeToProjectRoots(path: string, projects: readonly Project[]): string[] {
+    const candidates = new Set<string>([path]);
+    for (const project of projects) {
+        if (project.path === '.' || project.path === '') {
+            candidates.add(path);
+        } else if (path.startsWith(`${project.path}/`)) {
+            candidates.add(path.slice(project.path.length + 1));
+        }
+    }
+    return [...candidates];
+}
+
+function matchesConvention(path: string): boolean {
     const parts = path.split('/');
     const fileName = parts[parts.length - 1] ?? path;
 
@@ -72,7 +91,7 @@ export function reachedByConvention(path: string): boolean {
 
     const stem = fileName.replace(/\.[cm]?[jt]sx?$|\.mdx?$/, '');
 
-    // Root or src/ framework entry points (e.g. proxy.ts, middleware.ts, instrumentation.ts)
+    // App-root or src/ framework entry points (e.g. proxy.ts, middleware.ts, instrumentation.ts)
     if (
         (parts.length === 1 || (parts.length === 2 && parts[0] === 'src')) &&
         ROOT_ENTRY_CONVENTIONS.has(stem)
@@ -95,12 +114,16 @@ export function reachedByConvention(path: string): boolean {
     return false;
 }
 
-export function findInsights(files: readonly ParsedFile[], edges: readonly Edge[]): Insights {
+export function findInsights(
+    files: readonly ParsedFile[],
+    edges: readonly Edge[],
+    projects: readonly Project[] = [],
+): Insights {
     // A file the framework, a tool or the test runner reaches isn't unused just
     // because no import leads to it: that would be the parser reporting the
     // edge of its own view as a finding about the code.
     const unimported = files
-        .filter((f) => f.fanIn === 0 && !reachedByConvention(f.path))
+        .filter((f) => f.fanIn === 0 && !reachedByConvention(f.path, projects))
         .sort(byPath);
 
     const threshold = farOutFence(files.filter((f) => f.fanIn > 0).map((f) => f.fanIn));
