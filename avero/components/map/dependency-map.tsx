@@ -11,8 +11,15 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/base.css';
 import { useEffect, useMemo, useRef } from 'react';
+import { categoryOf } from '@/lib/graph/categories';
 import type { Folding } from '@/lib/graph/fold';
-import { highlight as highlightFor, hoverEndpoint, type Selection } from '@/lib/graph/highlight';
+import {
+    categoryFocus,
+    endpointKey,
+    highlight as highlightFor,
+    hoverEndpoint,
+    type Selection,
+} from '@/lib/graph/highlight';
 import { buildView } from '@/lib/graph/view';
 import type { Edge, ParsedFile } from '@/lib/parser/types';
 import { layout, type Box } from './layout';
@@ -44,6 +51,7 @@ export type MapControl = {
     hover: Selection;
     /** Changes whenever an open should refit the view to the new layout. */
     refit: number;
+    category: string | null;
     onOpen: (id: string) => void;
     onClose: (id: string) => void;
     onSelectFile: (path: string) => void;
@@ -68,6 +76,7 @@ function MapCanvas({
     selection,
     hover,
     refit,
+    category,
     onOpen,
     onClose,
     onSelectFile,
@@ -82,6 +91,14 @@ function MapCanvas({
     const boxes = useMemo(() => layout(view.objects, view.edges), [view]);
     const lit = useMemo(() => highlightFor(view, edges, selection), [view, edges, selection]);
     const hovered = useMemo(() => hoverEndpoint(view, hover), [view, hover]);
+    const categoryByPath = useMemo(
+        () => new Map(files.map((f) => [f.path, categoryOf(f.path)])),
+        [files],
+    );
+    const focus = useMemo(
+        () => categoryFocus(view, category, categoryByPath),
+        [view, category, categoryByPath],
+    );
 
     const nodes = useMemo(
         () =>
@@ -112,6 +129,10 @@ function MapCanvas({
                 : lit?.outgoing.has(e.id)
                   ? 'var(--outgoing)'
                   : undefined;
+            const focused =
+                focus === null ||
+                focus.endpoints.has(endpointKey(e.source, e.sourceHandle)) ||
+                focus.endpoints.has(endpointKey(e.target, e.targetHandle));
             (stroke ? bright : dim).push({
                 id: e.id,
                 source: e.source,
@@ -122,14 +143,14 @@ function MapCanvas({
                     // Thickness says how many imports one line stands for, gently.
                     strokeWidth: Math.min(2.5, 0.75 + Math.log2(e.count) / 3),
                     stroke,
-                    opacity: lit && !stroke ? 0.15 : 1,
+                    opacity: (lit && !stroke) || !focused ? 0.15 : 1,
                 },
             });
         }
         // Bright edges are drawn last so they cross over the dim ones. Order,
         // not zIndex: a raised edge would also draw over the nodes.
         return [...dim, ...bright];
-    }, [view, lit]);
+    }, [view, lit, focus]);
 
     // Refit after an open, against the layout that open produced. The caller
     // changes `refit` in the same update as `open`, so by the time this sees a
@@ -153,8 +174,8 @@ function MapCanvas({
         [onClose, onSelectFile, onScroll, onHover],
     );
     const selectionValue = useMemo(
-        () => ({ selection, highlight: lit, hovered, focus: null, category: null }),
-        [selection, lit, hovered],
+        () => ({ selection, highlight: lit, hovered, focus, category }),
+        [selection, lit, hovered, focus, category],
     );
 
     return (
