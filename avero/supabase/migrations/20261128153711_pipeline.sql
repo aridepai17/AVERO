@@ -56,11 +56,46 @@ WHERE
     a.project_id = b.project_id
     AND (a.created_at, a.id) < (b.created_at, b.id);
 
--- Preserve existing analyses and cascaded records (files, routes, insights,
--- explanations) instead of deleting older rows during migration. Enforce
--- UNIQUE (project_id) only after any multi-analysis history is handled
--- explicitly outside this migration.
+-- Archive non-latest analyses per project_id before enforcing UNIQUE (project_id)
+-- so submitRepository's onConflict: 'project_id' upsert works without deleting
+-- older rows or cascading data loss in analyses.
+CREATE TABLE IF NOT EXISTS public.analyses_archived_duplicates (
+    LIKE public.analyses INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now()
+);
+
+WITH
+    ranked_analyses AS (
+        SELECT
+            id,
+            ROW_NUMBER() OVER (
+                PARTITION BY
+                    project_id
+                ORDER BY
+                    created_at DESC,
+                    id DESC
+            ) AS rn
+        FROM
+            public.analyses
+    ),
+    moved_rows AS (
+        DELETE FROM public.analyses a USING ranked_analyses r
+        WHERE
+            a.id = r.id
+            AND r.rn > 1
+        RETURNING
+            a.*
+    )
+INSERT INTO
+    public.analyses_archived_duplicates
+SELECT
+    *,
+    now()
+FROM
+    moved_rows;
+
 ALTER TABLE public.analyses
+ADD CONSTRAINT analyses_project_id_key UNIQUE (project_id),
 ADD CONSTRAINT analyses_stage_check CHECK ((status = 'queued') = (stage IS NULL)),
 ADD CONSTRAINT analyses_started_check CHECK ((status = 'queued') = (started_at IS NULL)),
 ADD CONSTRAINT analyses_complete_check CHECK (
