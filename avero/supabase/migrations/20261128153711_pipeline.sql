@@ -56,8 +56,11 @@ WHERE
     a.project_id = b.project_id
     AND (a.created_at, a.id) < (b.created_at, b.id);
 
+-- Preserve existing analyses and cascaded records (files, routes, insights,
+-- explanations) instead of deleting older rows during migration. Enforce
+-- UNIQUE (project_id) only after any multi-analysis history is handled
+-- explicitly outside this migration.
 ALTER TABLE public.analyses
-ADD CONSTRAINT analyses_project_id_key UNIQUE (project_id),
 ADD CONSTRAINT analyses_stage_check CHECK ((status = 'queued') = (stage IS NULL)),
 ADD CONSTRAINT analyses_started_check CHECK ((status = 'queued') = (started_at IS NULL)),
 ADD CONSTRAINT analyses_complete_check CHECK (
