@@ -7,6 +7,8 @@ export type Repository = { owner: string; name: string };
 // Past this the archive isn't downloaded at all. There's no queue or worker to
 // hand a huge repository to, so the limit is stated rather than engineered round.
 export const MAX_ARCHIVE_BYTES = 100 * 1024 * 1024;
+export const MAX_EXTRACTED_BYTES = 500 * 1024 * 1024;
+export const MAX_EXTRACTED_ENTRIES = 50_000;
 
 // A hung request would otherwise hold the run in its stage until it goes stale.
 // The archive's limit covers streaming the whole body, so it's far longer.
@@ -131,9 +133,39 @@ export async function downloadArchive(
             done(received > MAX_ARCHIVE_BYTES ? tooLarge(owner, name) : null, chunk);
         },
     });
+
+    // Guard against zip/tar bombs: enforce expanded byte and entry limits before
+    // tar writes each entry to disk.
+    let extractedBytes = 0;
+    let entries = 0;
+    const unpack = extract({
+        cwd: directory,
+        strip: 1,
+        // tar v7 moved abort() off the entry and onto the parser stream.
+        onReadEntry(entry) {
+            entries += 1;
+            if (entries > MAX_EXTRACTED_ENTRIES) {
+                unpack.abort(
+                    new PipelineError(
+                        `${owner}/${name} has over ${MAX_EXTRACTED_ENTRIES.toLocaleString('en')} entries, the most this can analyse`,
+                    ),
+                );
+                return;
+            }
+            extractedBytes += entry.size ?? 0;
+            if (extractedBytes > MAX_EXTRACTED_BYTES) {
+                unpack.abort(
+                    new PipelineError(
+                        `${owner}/${name} expands to over ${MAX_EXTRACTED_BYTES / 1024 / 1024} MB, the most this can analyse`,
+                    ),
+                );
+            }
+        },
+    });
+
     const body = response.body;
     await withTimeout(what, ARCHIVE_TIMEOUT_MS, () =>
-        pipeline(Readable.from(chunks(body)), limit, extract({ cwd: directory, strip: 1 })),
+        pipeline(Readable.from(chunks(body)), limit, unpack),
     );
     return received;
 }
