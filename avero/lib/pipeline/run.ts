@@ -21,9 +21,9 @@ export class SupersededError extends Error {
 }
 
 /**
- * claimedStartedAt is this run's own claim on the row. Every later write is
- * scoped to it, so a stale run that was taken over can't change the row the
- * newer run now owns.
+- claimedStartedAt is this run's own claim on the row. Every later write is
+- scoped to it, so a stale run that was taken over can't change the row the
+- newer run now owns.
  */
 export type ClaimedRun = {
     analysisId: string;
@@ -116,28 +116,16 @@ export async function continueRun(db: Db, claimed: ClaimedRun): Promise<void> {
     }
 }
 
-// Moves the row to running and clears the last run's outcome in one update, so
-// two runs of the same analysis can't overlap. A stale run can be taken over.
-// Separate from the rest so a request can claim before it responds, and the
-// page it lands on already says the run has started.
+// Locks the analysis row in PostgreSQL and moves it to running while clearing
+// the prior run's outcome, so claims and writes serialize cleanly and stale
+// runs can be taken over without overlapping.
 export async function claimAnalysis(db: Db, analysisId: string): Promise<ClaimedRun> {
     const staleBefore = new Date(Date.now() - STALE_AFTER_MS).toISOString();
     const { data, error } = await db
-        .from('analyses')
-        .update({
-            status: 'running',
-            stage: 'fetch',
-            stage_message: 'Starting',
-            started_at: new Date().toISOString(),
-            finished_at: null,
-            error: null,
-            coverage: null,
-            detected_projects: null,
-            schema_version: null,
+        .rpc('claim_analysis', {
+            p_analysis_id: analysisId,
+            p_stale_before: staleBefore,
         })
-        .eq('id', analysisId)
-        .or(`status.neq.running,started_at.lt.${staleBefore}`)
-        .select('organization_id, started_at, projects!inner(repo_owner, repo_name)')
         .maybeSingle();
     if (error) throw new Error(`Starting analysis ${analysisId} failed: ${error.message}`);
     if (!data)
@@ -150,7 +138,7 @@ export async function claimAnalysis(db: Db, analysisId: string): Promise<Claimed
     return {
         analysisId,
         organizationId: data.organization_id,
-        repository: { owner: data.projects.repo_owner, name: data.projects.repo_name },
+        repository: { owner: data.repo_owner, name: data.repo_name },
         // As the database stored it, so matching on it later compares like with like.
         claimedStartedAt: data.started_at,
     };
