@@ -438,8 +438,39 @@ export type Database = {
             [_ in never]: never;
         };
         Functions: {
+            claim_analysis: {
+                Args: {
+                    p_analysis_id: string;
+                    p_stale_before: string;
+                };
+                Returns: {
+                    organization_id: string;
+                    started_at: string;
+                    repo_owner: string;
+                    repo_name: string;
+                }[];
+            };
+            clear_analysis_files_for_run: {
+                Args: {
+                    p_analysis_id: string;
+                    p_claimed_started_at: string;
+                };
+                Returns: undefined;
+            };
+            insert_analysis_files_for_run: {
+                Args: {
+                    p_analysis_id: string;
+                    p_claimed_started_at: string;
+                    p_rows: Json;
+                };
+                Returns: undefined;
+            };
             insert_edges: {
-                Args: { p_analysis_id: string; p_edges: Json };
+                Args: {
+                    p_analysis_id: string;
+                    p_claimed_started_at: string;
+                    p_edges: Json;
+                };
                 Returns: number;
             };
         };
