@@ -79,7 +79,12 @@ export async function continueRun(db: Db, claimed: ClaimedRun): Promise<void> {
             'store',
             `Storing ${count(result.coverage.files.found, 'file')} and ${count(result.edges.length, 'edge')}`,
         );
-        await storeResult(db, { id: analysisId, organizationId }, result);
+
+        await storeResult(
+            db,
+            { id: analysisId, organizationId, claimedStartedAt: claimed.claimedStartedAt },
+            result,
+        );
 
         await update(db, claimed, {
             status: 'complete',
