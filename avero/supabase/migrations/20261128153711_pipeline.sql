@@ -1,12 +1,5 @@
 -- The pipeline: analyses become real runs with named stages, and files and
 -- edges carry everything the parser reports about them.
-DELETE FROM public.organizations
-WHERE
-    id IN (
-        'org_3JwtW0HcpRZgNX7GbutuxdXoVJS',
-        'org_3JwxWAXSGXdXZzBg3adiwuaibgC'
-    );
-
 -- "parsing" was the name for any unfinished run. Which step it's on is the
 -- stage's job now, so the status just says it's running.
 ALTER TYPE public.analysis_status
@@ -24,7 +17,46 @@ ADD COLUMN started_at timestamptz,
 -- files table), and the projects its adapters detected.
 ADD COLUMN coverage jsonb,
 ADD COLUMN detected_projects jsonb,
-ADD COLUMN schema_version integer,
+ADD COLUMN schema_version integer;
+
+-- Backfill existing non-queued analyses before enforcing stage/start/complete checks.
+UPDATE public.analyses
+SET
+    started_at = COALESCE(started_at, created_at),
+    stage = COALESCE(
+        stage,
+        CASE
+            WHEN status = 'complete' THEN 'store'::public.analysis_stage
+            ELSE 'fetch'::public.analysis_stage
+        END
+    )
+WHERE
+    status <> 'queued';
+
+UPDATE public.analyses
+SET
+    status = 'failed',
+    error = COALESCE(
+        error,
+        'Analysis predates required pipeline metadata; re-run to generate map'
+    ),
+    finished_at = COALESCE(finished_at, now())
+WHERE
+    status = 'complete'
+    AND (
+        coverage IS NULL
+        OR detected_projects IS NULL
+        OR commit_sha IS NULL
+        OR schema_version IS NULL
+    );
+
+-- Deduplicate per project if multiple rows exist before adding UNIQUE (project_id).
+DELETE FROM public.analyses a USING public.analyses b
+WHERE
+    a.project_id = b.project_id
+    AND (a.created_at, a.id) < (b.created_at, b.id);
+
+ALTER TABLE public.analyses
 ADD CONSTRAINT analyses_project_id_key UNIQUE (project_id),
 ADD CONSTRAINT analyses_stage_check CHECK ((status = 'queued') = (stage IS NULL)),
 ADD CONSTRAINT analyses_started_check CHECK ((status = 'queued') = (started_at IS NULL)),
@@ -49,7 +81,27 @@ ADD COLUMN lines integer,
 ADD COLUMN bytes integer,
 ADD COLUMN hash text,
 ADD COLUMN fan_in integer,
-ADD COLUMN fan_out integer,
+ADD COLUMN fan_out integer;
+
+-- Mark pre-existing files as skipped with detail so they pass the check constraint
+-- without fabricating parsed file metrics; legacy edges lack line/type_only data.
+UPDATE public.files
+SET
+    skip_reason = COALESCE(skip_reason, 'legacy'),
+    skip_detail = COALESCE(
+        skip_detail,
+        'Migrated prior to parser v2; re-run analysis to populate metrics'
+    )
+WHERE
+    skip_reason IS NOT NULL
+    OR module IS NULL
+    OR lines IS NULL
+    OR bytes IS NULL
+    OR hash IS NULL
+    OR fan_in IS NULL
+    OR fan_out IS NULL;
+
+ALTER TABLE public.files
 ADD CONSTRAINT files_parsed_or_skipped_check CHECK (
     CASE
         WHEN skip_reason IS NULL THEN skip_detail IS NULL
@@ -68,6 +120,8 @@ ADD CONSTRAINT files_parsed_or_skipped_check CHECK (
         AND fan_out IS NULL
     END
 );
+
+DELETE FROM public.edges;
 
 ALTER TABLE public.edges
 ADD COLUMN type_only boolean NOT NULL,
