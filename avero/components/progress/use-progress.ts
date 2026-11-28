@@ -15,19 +15,21 @@ export function useProgress(analysisId: string, initial: Progress) {
     const supabase = useBrowserSupabase();
     const [progress, setProgress] = useState(initial);
     const [lost, setLost] = useState<string | null>(null);
-    const broadcastReceived = useRef(false);
+    const catchUpSeq = useRef(0);
+    const lastBroadcastSeq = useRef(0);
     const following = progress.status === 'queued' || progress.status === 'running';
 
     useEffect(() => {
         if (!supabase || !following) return;
         let cancelled = false;
-        broadcastReceived.current = false;
+        catchUpSeq.current += 1;
+        lastBroadcastSeq.current = 0;
         const channel = supabase
             .channel(progressTopic(analysisId), { config: { private: true } })
             .on('broadcast', { event: 'progress' }, ({ payload }) => {
                 const next = parseProgress(payload);
                 if (next && !cancelled) {
-                    broadcastReceived.current = true;
+                    lastBroadcastSeq.current = catchUpSeq.current;
                     setProgress(next);
                 }
             })
@@ -35,12 +37,20 @@ export function useProgress(analysisId: string, initial: Progress) {
                 if (cancelled) return;
                 if (state === 'SUBSCRIBED') {
                     setLost(null);
+                    const requestSeq = ++catchUpSeq.current;
                     const { data } = await supabase
                         .from('analyses')
                         .select('status, stage, stage_message, error')
                         .eq('id', analysisId)
                         .maybeSingle();
-                    if (!data || cancelled || broadcastReceived.current) return;
+                    if (
+                        !data ||
+                        cancelled ||
+                        requestSeq !== catchUpSeq.current ||
+                        lastBroadcastSeq.current >= requestSeq
+                    ) {
+                        return;
+                    }
                     const read: Progress = {
                         status: data.status,
                         stage: data.stage,
@@ -61,7 +71,8 @@ export function useProgress(analysisId: string, initial: Progress) {
 
     // A re-run was just claimed: follow again from its first stage.
     const restarted = useCallback(() => {
-        broadcastReceived.current = false;
+        catchUpSeq.current += 1;
+        lastBroadcastSeq.current = 0;
         setProgress({ status: 'running', stage: 'fetch', message: 'Starting' });
     }, []);
 
