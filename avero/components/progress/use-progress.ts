@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { progressTopic, type Progress, type Stage, type Status } from '@/lib/pipeline/stages';
 import { useBrowserSupabase } from '@/lib/supabase/browser';
 
@@ -15,16 +15,21 @@ export function useProgress(analysisId: string, initial: Progress) {
     const supabase = useBrowserSupabase();
     const [progress, setProgress] = useState(initial);
     const [lost, setLost] = useState<string | null>(null);
+    const broadcastReceived = useRef(false);
     const following = progress.status === 'queued' || progress.status === 'running';
 
     useEffect(() => {
         if (!supabase || !following) return;
         let cancelled = false;
+        broadcastReceived.current = false;
         const channel = supabase
             .channel(progressTopic(analysisId), { config: { private: true } })
             .on('broadcast', { event: 'progress' }, ({ payload }) => {
                 const next = parseProgress(payload);
-                if (next && !cancelled) setProgress(next);
+                if (next && !cancelled) {
+                    broadcastReceived.current = true;
+                    setProgress(next);
+                }
             })
             .subscribe(async (state, error) => {
                 if (cancelled) return;
@@ -35,7 +40,7 @@ export function useProgress(analysisId: string, initial: Progress) {
                         .select('status, stage, stage_message, error')
                         .eq('id', analysisId)
                         .maybeSingle();
-                    if (!data || cancelled) return;
+                    if (!data || cancelled || broadcastReceived.current) return;
                     const read: Progress = {
                         status: data.status,
                         stage: data.stage,
@@ -55,10 +60,10 @@ export function useProgress(analysisId: string, initial: Progress) {
     }, [supabase, analysisId, following]);
 
     // A re-run was just claimed: follow again from its first stage.
-    const restarted = useCallback(
-        () => setProgress({ status: 'running', stage: 'fetch', message: 'Starting' }),
-        [],
-    );
+    const restarted = useCallback(() => {
+        broadcastReceived.current = false;
+        setProgress({ status: 'running', stage: 'fetch', message: 'Starting' });
+    }, []);
 
     return { progress, lost, restarted };
 }
