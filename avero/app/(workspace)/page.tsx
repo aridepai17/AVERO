@@ -2,13 +2,14 @@ import { auth } from '@clerk/nextjs/server';
 import { connection } from 'next/server';
 import { AnalysisRow, type RowData } from '@/components/progress/analysis-row';
 import { StateMark } from '@/components/state-mark';
+import { SubmitForm } from '@/components/submit-form';
 import { isStale, type Status } from '@/lib/pipeline/stages';
 import { createServerSupabase } from '@/lib/supabase/server';
 import { ago } from '@/lib/time';
 
 const LIST_LIMIT = 100;
 type Tally = Status | 'stale';
-const TALLY_ORDER: Tally[] = ['parsing', 'queued', 'stale', 'complete', 'failed'];
+const TALLY_ORDER: Tally[] = ['running', 'queued', 'stale', 'complete', 'failed'];
 
 export default async function DashboardPage() {
     const { sessionClaims } = await auth();
@@ -26,7 +27,7 @@ export default async function DashboardPage() {
 
     const counts = new Map<Tally, number>();
     for (const r of rows) {
-        const tally: Tally = r.stale ? 'stale' : r.status;
+        const tally: Tally = r.staleAtRender ? 'stale' : r.progress.status;
         counts.set(tally, (counts.get(tally) ?? 0) + 1);
     }
 
@@ -39,12 +40,13 @@ export default async function DashboardPage() {
                         ? `Latest ${LIST_LIMIT} analyses`
                         : `${rows.length} ${rows.length === 1 ? 'analysis' : 'analyses'}`}
                 </span>
+                <SubmitForm />
                 {rows.length > 0 && (
                     <ul className="text-fg-muted ml-auto flex items-center gap-3 text-xs tabular-nums">
                         {TALLY_ORDER.filter((s) => counts.has(s)).map((s) => (
                             <li key={s} className="flex items-center gap-1.5">
                                 <StateMark
-                                    status={s === 'stale' ? 'parsing' : s}
+                                    status={s === 'stale' ? 'running' : s}
                                     stale={s === 'stale'}
                                 />
                                 {counts.get(s)} {s}
@@ -57,7 +59,7 @@ export default async function DashboardPage() {
             {rows.length === 0 ? (
                 <div className="text-fg-muted px-3 py-10 text-xs">
                     <p className="text-fg">No analyses yet.</p>
-                    <p className="mt-1">Analyses for this organization will appear here.</p>
+                    <p className="mt-1">Paste a public GitHub repository above to map it.</p>
                 </div>
             ) : (
                 <div className="min-h-0 flex-1 overflow-auto">
@@ -102,7 +104,7 @@ async function loadRows(): Promise<RowData[]> {
     const { data: analyses, error } = await supabase
         .from('analyses')
         .select(
-            'id, status, commit_sha, error, created_at, updated_at, finished_at, projects(repo_owner, repo_name)',
+            'id, status, stage, stage_message, commit_sha, error, created_at, started_at, finished_at, projects(repo_owner, repo_name)',
         )
         .order('created_at', { ascending: false })
         .limit(LIST_LIMIT);
@@ -116,9 +118,12 @@ async function loadRows(): Promise<RowData[]> {
             ? { owner: a.projects.repo_owner, name: a.projects.repo_name }
             : null,
         commitSha: a.commit_sha,
-        status: a.status,
-        error: a.error,
-        stale: isStale(a, now),
+        progress: {
+            status: a.status,
+            stage: a.stage,
+            message: a.status === 'failed' ? a.error : a.stage_message,
+        },
+        staleAtRender: isStale(a, now),
         created: { iso: a.created_at, ago: ago(a.created_at, now) },
         finished: a.finished_at ? { iso: a.finished_at, ago: ago(a.finished_at, now) } : null,
     }));
