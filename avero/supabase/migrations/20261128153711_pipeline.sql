@@ -50,15 +50,9 @@ WHERE
         OR schema_version IS NULL
     );
 
--- Deduplicate per project if multiple rows exist before adding UNIQUE (project_id).
-DELETE FROM public.analyses a USING public.analyses b
-WHERE
-    a.project_id = b.project_id
-    AND (a.created_at, a.id) < (b.created_at, b.id);
-
 -- Archive non-latest analyses per project_id before enforcing UNIQUE (project_id)
--- so submitRepository's onConflict: 'project_id' upsert works without deleting
--- older rows or cascading data loss in analyses.
+-- so submitRepository's onConflict: 'project_id' upsert works without silently
+-- losing duplicate analysis rows.
 CREATE TABLE IF NOT EXISTS public.analyses_archived_duplicates (
     LIKE public.analyses INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
     archived_at timestamptz NOT NULL DEFAULT now()
@@ -122,7 +116,7 @@ ADD COLUMN fan_in integer,
 ADD COLUMN fan_out integer;
 
 -- Mark pre-existing files as skipped with detail so they pass the check constraint
--- without fabricating parsed file metrics; legacy edges lack line/type_only data.
+-- without fabricating parsed file metrics.
 UPDATE public.files
 SET
     skip_reason = COALESCE(skip_reason, 'legacy'),
@@ -159,6 +153,20 @@ ADD CONSTRAINT files_parsed_or_skipped_check CHECK (
     END
 );
 
+-- Archive existing edges before clearing public.edges for NOT NULL type_only/line columns.
+CREATE TABLE IF NOT EXISTS public.edges_legacy_archive (
+    LIKE public.edges INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now()
+);
+
+INSERT INTO
+    public.edges_legacy_archive
+SELECT
+    e.*,
+    now()
+FROM
+    public.edges e;
+
 DELETE FROM public.edges;
 
 ALTER TABLE public.edges
@@ -166,16 +174,116 @@ ADD COLUMN type_only boolean NOT NULL,
 ADD COLUMN line integer NOT NULL,
 ADD CONSTRAINT edges_unique_key UNIQUE (analysis_id, source_file_id, target_file_id, kind);
 
--- Edges arrive keyed by path; this resolves both ends against the files
--- already stored for the analysis. An edge whose end isn't a stored file is
--- a bug upstream, so it aborts the call rather than being dropped.
-CREATE FUNCTION public.insert_edges (p_analysis_id uuid, p_edges jsonb) RETURNS integer LANGUAGE plpgsql
+-- Lock the analysis row and verify run ownership atomically before clearing files.
+CREATE FUNCTION public.clear_analysis_files_for_run (
+    p_analysis_id uuid,
+    p_claimed_started_at timestamptz
+) RETURNS void LANGUAGE plpgsql
 SET
     search_path = '' AS $$
 declare
+  v_owned boolean;
+begin
+  select exists (
+    select 1
+    from public.analyses
+    where id = p_analysis_id
+      and started_at = p_claimed_started_at
+    for update
+  ) into v_owned;
+
+  if not v_owned then
+    raise exception 'SUPERSEDED: Analysis % was taken over by a newer run', p_analysis_id
+      using errcode = 'P0002';
+  end if;
+
+  delete from public.files
+  where analysis_id = p_analysis_id;
+end;
+$$;
+
+-- Lock the analysis row and verify run ownership atomically before inserting a file chunk.
+CREATE FUNCTION public.insert_analysis_files_for_run (
+    p_analysis_id uuid,
+    p_claimed_started_at timestamptz,
+    p_rows jsonb
+) RETURNS void LANGUAGE plpgsql
+SET
+    search_path = '' AS $$
+declare
+  v_owned boolean;
+begin
+  select exists (
+    select 1
+    from public.analyses
+    where id = p_analysis_id
+      and started_at = p_claimed_started_at
+    for update
+  ) into v_owned;
+
+  if not v_owned then
+    raise exception 'SUPERSEDED: Analysis % was taken over by a newer run', p_analysis_id
+      using errcode = 'P0002';
+  end if;
+
+  insert into public.files (
+    organization_id,
+    analysis_id,
+    path,
+    module,
+    lines,
+    bytes,
+    hash,
+    fan_in,
+    fan_out,
+    skip_reason,
+    skip_detail
+  )
+  select
+    (r->>'organization_id')::uuid,
+    p_analysis_id,
+    r->>'path',
+    nullif(r->>'module', '')::text,
+    (r->>'lines')::integer,
+    (r->>'bytes')::integer,
+    r->>'hash',
+    (r->>'fan_in')::integer,
+    (r->>'fan_out')::integer,
+    r->>'skip_reason',
+    r->>'skip_detail'
+  from jsonb_array_elements(p_rows) as r;
+end;
+$$;
+
+-- Edges arrive keyed by path; this resolves both ends against the files
+-- already stored for the analysis while holding the analysis lock and verifying
+-- run ownership. An edge whose end isn't a stored file is a bug upstream, so
+-- it aborts the call rather than being dropped.
+CREATE FUNCTION public.insert_edges (
+    p_analysis_id uuid,
+    p_claimed_started_at timestamptz,
+    p_edges jsonb
+) RETURNS integer LANGUAGE plpgsql
+SET
+    search_path = '' AS $$
+declare
+  v_owned boolean;
   expected integer := jsonb_array_length(p_edges);
   inserted integer;
 begin
+  select exists (
+    select 1
+    from public.analyses
+    where id = p_analysis_id
+      and started_at = p_claimed_started_at
+    for update
+  ) into v_owned;
+
+  if not v_owned then
+    raise exception 'SUPERSEDED: Analysis % was taken over by a newer run', p_analysis_id
+      using errcode = 'P0002';
+  end if;
+
   insert into public.edges
     (organization_id, analysis_id, source_file_id, target_file_id, kind, specifier, type_only, line)
   select s.organization_id, p_analysis_id, s.id, t.id, e.kind, e.specifier, e.type_only, e.line
@@ -191,13 +299,95 @@ begin
 end;
 $$;
 
--- Only the pipeline's writer calls this.
+-- Only the pipeline's writer calls these.
 REVOKE
-EXECUTE ON FUNCTION public.insert_edges (uuid, jsonb)
+EXECUTE ON FUNCTION public.clear_analysis_files_for_run (uuid, timestamptz)
 FROM
     public,
     anon,
     authenticated;
 
 GRANT
-EXECUTE ON FUNCTION public.insert_edges (uuid, jsonb) TO service_role;
+EXECUTE ON FUNCTION public.clear_analysis_files_for_run (uuid, timestamptz) TO service_role;
+
+REVOKE
+EXECUTE ON FUNCTION public.insert_analysis_files_for_run (uuid, timestamptz, jsonb)
+FROM
+    public,
+    anon,
+    authenticated;
+
+GRANT
+EXECUTE ON FUNCTION public.insert_analysis_files_for_run (uuid, timestamptz, jsonb) TO service_role;
+
+REVOKE
+EXECUTE ON FUNCTION public.insert_edges (uuid, timestamptz, jsonb)
+FROM
+    public,
+    anon,
+    authenticated;
+
+GRANT
+EXECUTE ON FUNCTION public.insert_edges (uuid, timestamptz, jsonb) TO service_role;
+
+CREATE OR REPLACE FUNCTION public.claim_analysis (p_analysis_id uuid, p_stale_before timestamptz) RETURNS TABLE (
+    organization_id uuid,
+    started_at timestamptz,
+    repo_owner text,
+    repo_name text
+) LANGUAGE plpgsql
+SET
+    search_path = '' AS $$
+declare
+  v_row public.analyses%rowtype;
+  v_now timestamptz := now();
+begin
+  select *
+  into v_row
+  from public.analyses
+  where id = p_analysis_id
+  for update;
+
+  if not found then
+    return;
+  end if;
+
+  if v_row.status = 'running'
+     and v_row.started_at is not null
+     and v_row.started_at >= p_stale_before then
+    return;
+  end if;
+
+  update public.analyses a
+  set
+    status = 'running',
+    stage = 'fetch',
+    stage_message = 'Starting',
+    started_at = v_now,
+    finished_at = null,
+    error = null,
+    coverage = null,
+    detected_projects = null,
+    schema_version = null
+  where a.id = p_analysis_id
+  returning a.organization_id, a.started_at into organization_id, started_at;
+
+  select p.repo_owner, p.repo_name
+  into repo_owner, repo_name
+  from public.projects p
+  where p.id = v_row.project_id
+    and p.organization_id = v_row.organization_id;
+
+  return next;
+end;
+$$;
+
+REVOKE
+EXECUTE ON FUNCTION public.claim_analysis (uuid, timestamptz)
+FROM
+    public,
+    anon,
+    authenticated;
+
+GRANT
+EXECUTE ON FUNCTION public.claim_analysis (uuid, timestamptz) TO service_role;
