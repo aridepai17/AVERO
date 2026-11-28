@@ -50,60 +50,6 @@ WHERE
         OR schema_version IS NULL
     );
 
--- Archive non-latest analyses per project_id before enforcing UNIQUE (project_id)
--- so submitRepository's onConflict: 'project_id' upsert works without silently
--- losing duplicate analysis rows.
-CREATE TABLE IF NOT EXISTS public.analyses_archived_duplicates (
-    LIKE public.analyses INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
-    archived_at timestamptz NOT NULL DEFAULT now()
-);
-
-WITH
-    ranked_analyses AS (
-        SELECT
-            id,
-            ROW_NUMBER() OVER (
-                PARTITION BY
-                    project_id
-                ORDER BY
-                    created_at DESC,
-                    id DESC
-            ) AS rn
-        FROM
-            public.analyses
-    ),
-    moved_rows AS (
-        DELETE FROM public.analyses a USING ranked_analyses r
-        WHERE
-            a.id = r.id
-            AND r.rn > 1
-        RETURNING
-            a.*
-    )
-INSERT INTO
-    public.analyses_archived_duplicates
-SELECT
-    *,
-    now()
-FROM
-    moved_rows;
-
-ALTER TABLE public.analyses
-ADD CONSTRAINT analyses_project_id_key UNIQUE (project_id),
-ADD CONSTRAINT analyses_stage_check CHECK ((status = 'queued') = (stage IS NULL)),
-ADD CONSTRAINT analyses_started_check CHECK ((status = 'queued') = (started_at IS NULL)),
-ADD CONSTRAINT analyses_complete_check CHECK (
-    (status = 'complete') = (
-        coverage IS NOT NULL
-        AND detected_projects IS NOT NULL
-        AND commit_sha IS NOT NULL
-        AND schema_version IS NOT NULL
-    )
-);
-
--- The unique constraint's index serves lookups by project; this one is redundant.
-DROP INDEX public.analyses_project_id_organization_id_idx;
-
 -- A parsed file has its measurements; a skipped one has a reason and detail
 -- and nothing else, so it can never be mistaken for a file with no imports.
 ALTER TABLE public.files
@@ -174,6 +120,193 @@ ADD COLUMN type_only boolean NOT NULL,
 ADD COLUMN line integer NOT NULL,
 ADD CONSTRAINT edges_unique_key UNIQUE (analysis_id, source_file_id, target_file_id, kind);
 
+-- Create archive tables for duplicate analyses and their child records before
+-- deleting non-latest analyses per project_id so cascading foreign keys do
+-- not wipe child rows prior to archival.
+CREATE TABLE IF NOT EXISTS public.analyses_archived_duplicates (
+    LIKE public.analyses INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now(),
+    CONSTRAINT analyses_archived_duplicates_id_key UNIQUE (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.files_archived_duplicates (
+    LIKE public.files INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now(),
+    CONSTRAINT files_archived_duplicates_id_key UNIQUE (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.edges_archived_duplicates (
+    LIKE public.edges INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now(),
+    CONSTRAINT edges_archived_duplicates_id_key UNIQUE (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.routes_archived_duplicates (
+    LIKE public.routes INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now(),
+    CONSTRAINT routes_archived_duplicates_id_key UNIQUE (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.insights_archived_duplicates (
+    LIKE public.insights INCLUDING DEFAULTS INCLUDING CONSTRAINTS,
+    archived_at timestamptz NOT NULL DEFAULT now(),
+    CONSTRAINT insights_archived_duplicates_id_key UNIQUE (id)
+);
+
+ALTER TABLE public.analyses_archived_duplicates ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE public.files_archived_duplicates ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE public.edges_archived_duplicates ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE public.routes_archived_duplicates ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE public.insights_archived_duplicates ENABLE ROW LEVEL SECURITY;
+
+DO $$
+DECLARE
+    tbl text;
+    pol_name text := 'members read their organization''s rows';
+BEGIN
+    FOREACH tbl IN ARRAY ARRAY[
+        'analyses_archived_duplicates',
+        'files_archived_duplicates',
+        'edges_archived_duplicates',
+        'routes_archived_duplicates',
+        'insights_archived_duplicates'
+    ]
+    LOOP
+        IF NOT EXISTS (
+            SELECT 1
+            FROM pg_policies
+            WHERE schemaname = 'public'
+              AND tablename = tbl
+              AND policyname = pol_name
+        ) THEN
+            EXECUTE format(
+                'CREATE POLICY %I ON public.%I FOR SELECT TO authenticated USING (
+                    organization_id = (
+                        SELECT coalesce(
+                            auth.jwt() -> ''o'' ->> ''id'',
+                            auth.jwt() ->> ''org_id''
+                        )
+                    )
+                )',
+                pol_name,
+                tbl
+            );
+        END IF;
+    END LOOP;
+END
+$$;
+
+WITH
+    ranked_analyses AS (
+        SELECT
+            id,
+            ROW_NUMBER() OVER (
+                PARTITION BY
+                    project_id
+                ORDER BY
+                    created_at DESC,
+                    id DESC
+            ) AS rn
+        FROM
+            public.analyses
+    ),
+    duplicate_ids AS (
+        SELECT
+            id
+        FROM
+            ranked_analyses
+        WHERE
+            rn > 1
+    ),
+    archived_files AS (
+        INSERT INTO
+            public.files_archived_duplicates
+        SELECT
+            f.*,
+            now()
+        FROM
+            public.files f
+            JOIN duplicate_ids d ON f.analysis_id = d.id
+        ON CONFLICT (id) DO NOTHING
+        RETURNING
+            id
+    ),
+    archived_edges AS (
+        INSERT INTO
+            public.edges_archived_duplicates
+        SELECT
+            e.*,
+            now()
+        FROM
+            public.edges e
+            JOIN duplicate_ids d ON e.analysis_id = d.id
+        ON CONFLICT (id) DO NOTHING
+        RETURNING
+            id
+    ),
+    archived_routes AS (
+        INSERT INTO
+            public.routes_archived_duplicates
+        SELECT
+            r.*,
+            now()
+        FROM
+            public.routes r
+            JOIN duplicate_ids d ON r.analysis_id = d.id
+        ON CONFLICT (id) DO NOTHING
+        RETURNING
+            id
+    ),
+    archived_insights AS (
+        INSERT INTO
+            public.insights_archived_duplicates
+        SELECT
+            i.*,
+            now()
+        FROM
+            public.insights i
+            JOIN duplicate_ids d ON i.analysis_id = d.id
+        ON CONFLICT (id) DO NOTHING
+        RETURNING
+            id
+    ),
+    archived_parents AS (
+        INSERT INTO
+            public.analyses_archived_duplicates
+        SELECT
+            a.*,
+            now()
+        FROM
+            public.analyses a
+            JOIN duplicate_ids d ON a.id = d.id
+        ON CONFLICT (id) DO NOTHING
+        RETURNING
+            id
+    )
+DELETE FROM public.analyses a USING archived_parents ap
+WHERE
+    a.id = ap.id;
+
+ALTER TABLE public.analyses
+ADD CONSTRAINT analyses_project_id_key UNIQUE (project_id),
+ADD CONSTRAINT analyses_stage_check CHECK ((status = 'queued') = (stage IS NULL)),
+ADD CONSTRAINT analyses_started_check CHECK ((status = 'queued') = (started_at IS NULL)),
+ADD CONSTRAINT analyses_complete_check CHECK (
+    (status = 'complete') = (
+        coverage IS NOT NULL
+        AND detected_projects IS NOT NULL
+        AND commit_sha IS NOT NULL
+        AND schema_version IS NOT NULL
+    )
+);
+
+-- The unique constraint's index serves lookups by project; this one is redundant.
+DROP INDEX public.analyses_project_id_organization_id_idx;
+
 -- Lock the analysis row and verify run ownership atomically before clearing files.
 CREATE FUNCTION public.clear_analysis_files_for_run (
     p_analysis_id uuid,
@@ -240,7 +373,7 @@ begin
     skip_detail
   )
   select
-    (r->>'organization_id')::uuid,
+    r->>'organization_id',
     p_analysis_id,
     r->>'path',
     nullif(r->>'module', '')::text,
@@ -268,7 +401,7 @@ SET
     search_path = '' AS $$
 declare
   v_owned boolean;
-  expected integer := jsonb_array_length(p_edges);
+  expected integer := coalesce(jsonb_array_length(p_edges), 0);
   inserted integer;
 begin
   select exists (
@@ -291,6 +424,7 @@ begin
     as e (source text, target text, kind text, specifier text, type_only boolean, line integer)
   join public.files s on s.analysis_id = p_analysis_id and s.path = e.source and s.skip_reason is null
   join public.files t on t.analysis_id = p_analysis_id and t.path = e.target and t.skip_reason is null;
+
   get diagnostics inserted = row_count;
   if inserted <> expected then
     raise exception 'insert_edges: % of % edges matched stored files for analysis %', inserted, expected, p_analysis_id;
@@ -331,7 +465,7 @@ GRANT
 EXECUTE ON FUNCTION public.insert_edges (uuid, timestamptz, jsonb) TO service_role;
 
 CREATE OR REPLACE FUNCTION public.claim_analysis (p_analysis_id uuid, p_stale_before timestamptz) RETURNS TABLE (
-    organization_id uuid,
+    organization_id text,
     started_at timestamptz,
     repo_owner text,
     repo_name text
@@ -341,6 +475,10 @@ SET
 declare
   v_row public.analyses%rowtype;
   v_now timestamptz := now();
+  v_org_id text;
+  v_started_at timestamptz;
+  v_repo_owner text;
+  v_repo_name text;
 begin
   select *
   into v_row
@@ -370,14 +508,18 @@ begin
     detected_projects = null,
     schema_version = null
   where a.id = p_analysis_id
-  returning a.organization_id, a.started_at into organization_id, started_at;
+  returning a.organization_id, a.started_at into v_org_id, v_started_at;
 
   select p.repo_owner, p.repo_name
-  into repo_owner, repo_name
+  into v_repo_owner, v_repo_name
   from public.projects p
   where p.id = v_row.project_id
     and p.organization_id = v_row.organization_id;
 
+  organization_id := v_org_id;
+  started_at := v_started_at;
+  repo_owner := v_repo_owner;
+  repo_name := v_repo_name;
   return next;
 end;
 $$;
