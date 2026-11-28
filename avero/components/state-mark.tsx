@@ -20,7 +20,7 @@ export function StateMark({ status, stale = false }: { status: Status; stale?: b
                     strokeDasharray={stale ? '2 1.6' : undefined}
                 />
             )}
-            {status === 'parsing' && !stale && (
+            {status === 'running' && !stale && (
                 <path d="M5 1 A4 4 0 0 1 5 9 Z" fill="currentColor" />
             )}
             {status === 'failed' && (

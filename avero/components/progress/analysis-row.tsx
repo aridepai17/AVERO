@@ -1,49 +1,63 @@
+'use client';
+
+import Link from 'next/link';
 import { StateMark } from '@/components/state-mark';
-import { STALE_AFTER_MS, type Status } from '@/lib/pipeline/stages';
+import { STALE_AFTER_MS, type Progress } from '@/lib/pipeline/stages';
+import { sameProgress, useProgress } from './use-progress';
 
 export type RowData = {
     id: string;
     repository: { owner: string; name: string } | null;
     commitSha: string | null;
-    status: Status;
-    error: string | null;
-    stale: boolean;
-    // Formatted by the server, so the browser renders the same text it was sent.
+    progress: Progress;
+    staleAtRender: boolean;
+    // Formatted by the server, so the browser renders the text it was sent.
     created: { iso: string; ago: string };
     finished: { iso: string; ago: string } | null;
 };
 
+// One dashboard row. An unfinished one follows its own channel, so a run
+// started in another tab moves here too.
 export function AnalysisRow({ row }: { row: RowData }) {
-    const note = row.status === 'failed' ? row.error : null;
+    const { progress } = useProgress(row.id, row.progress);
+    const stale = row.staleAtRender && sameProgress(progress, row.progress);
+    const finishedNow =
+        !row.finished && (progress.status === 'complete' || progress.status === 'failed');
+    const note = progress.status === 'complete' ? null : progress.message;
 
     return (
         <tr className="border-line hover:bg-raised border-b align-top">
             <td className="truncate px-3 py-1.5 font-mono">
-                {row.repository ? (
-                    <>
-                        <span className="text-fg-muted">{row.repository.owner}/</span>
-                        {row.repository.name}
-                    </>
-                ) : (
-                    <span className="text-fg-muted">—</span>
-                )}
-                {(note || row.stale) && (
-                    <span
-                        className="text-fg-muted mt-0.5 block truncate font-sans"
-                        title={note ?? undefined}
-                    >
-                        {row.stale
-                            ? `No progress for over ${STALE_AFTER_MS / 60000} minutes${note ? ` — ${note}` : ''}`
-                            : note}
-                    </span>
-                )}
+                <Link href={`/analyses/${row.id}`} className="block">
+                    {row.repository ? (
+                        <>
+                            <span className="text-fg-muted">{row.repository.owner}/</span>
+                            {row.repository.name}
+                        </>
+                    ) : (
+                        <span className="text-fg-muted">—</span>
+                    )}
+                    {note && (
+                        <span
+                            className="text-fg-muted mt-0.5 block truncate font-sans"
+                            title={note}
+                        >
+                            {stale
+                                ? `No progress for over ${STALE_AFTER_MS / 60000} minutes — ${note}`
+                                : note}
+                        </span>
+                    )}
+                </Link>
             </td>
             <td className="px-3 py-1.5">
                 <span
-                    className={`flex items-center gap-1.5 ${row.status === 'queued' ? 'text-fg-muted' : 'text-fg'}`}
+                    className={`flex items-center gap-1.5 ${progress.status === 'queued' ? 'text-fg-muted' : 'text-fg'}`}
                 >
-                    <StateMark status={row.status} stale={row.stale} />
-                    {row.stale ? 'stale' : row.status}
+                    <StateMark status={progress.status} stale={stale} />
+                    {stale ? 'stale' : progress.status}
+                    {progress.status === 'running' && !stale && progress.stage && (
+                        <span className="text-fg-muted">· {progress.stage}</span>
+                    )}
                 </span>
             </td>
             <td className="text-fg-muted hidden px-3 py-1.5 font-mono sm:table-cell">
@@ -63,6 +77,8 @@ export function AnalysisRow({ row }: { row: RowData }) {
                     <time dateTime={row.finished.iso} title={row.finished.iso}>
                         {row.finished.ago}
                     </time>
+                ) : finishedNow ? (
+                    'just now'
                 ) : (
                     '—'
                 )}

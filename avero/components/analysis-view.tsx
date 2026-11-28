@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { CategoryRail } from '@/components/category-rail';
+import { CoverageBanner } from '@/components/coverage-banner';
 import { DetailPane, type RepositoryFacts, type Tab } from '@/components/detail-pane';
 import { DependencyMap } from '@/components/map/dependency-map';
 import { Shell } from '@/components/shell';
@@ -9,15 +10,17 @@ import { foldDirectories } from '@/lib/graph/fold';
 import type { Selection } from '@/lib/graph/highlight';
 import type { Direction } from '@/lib/graph/reach';
 import { clampOffset, groupId, MAX_ROWS, rankGroupFiles } from '@/lib/graph/view';
-import type { Edge, ParsedFile } from '@/lib/parser/types';
+import type { Coverage, Edge, ParsedFile } from '@/lib/parser/types';
 
-export function PreviewCanvas({
+export function AnalysisView({
     files,
     edges,
+    coverage,
     repository,
 }: {
     files: ParsedFile[];
     edges: Edge[];
+    coverage: Coverage;
     repository: RepositoryFacts;
 }) {
     const folding = useMemo(() => foldDirectories(files), [files]);
@@ -42,14 +45,24 @@ export function PreviewCanvas({
         setRefit((r) => r + 1);
     }, []);
 
-    const handleClose = useCallback((id: string) => {
-        setOpen((prev) => {
-            const next = new Map(prev);
-            next.delete(id);
-            return next;
-        });
-        setSelection((prev) => (prev?.kind === 'group' && prev.id === id ? null : prev));
-    }, []);
+    const handleClose = useCallback(
+        (id: string) => {
+            setOpen((prev) => {
+                const next = new Map(prev);
+                next.delete(id);
+                return next;
+            });
+            setSelection((prev) => {
+                if (prev?.kind === 'group') return prev.id === id ? null : prev;
+                if (prev?.kind === 'file') {
+                    const dir = folding.groupOf.get(prev.path);
+                    return dir !== undefined && groupId(dir) === id ? null : prev;
+                }
+                return prev;
+            });
+        },
+        [folding],
+    );
 
     const handleSelectFile = useCallback((path: string) => {
         setSelection((prev) =>
@@ -73,10 +86,10 @@ export function PreviewCanvas({
             const targetOffset =
                 index === -1 ? 0 : clampOffset(index - Math.floor(MAX_ROWS / 2), ranked.length);
 
-            setRefit((r) => r + 1);
             setOpen((prev) => {
                 const current = prev.get(id);
                 if (current === undefined) {
+                    setRefit((r) => r + 1);
                     return new Map(prev).set(id, targetOffset);
                 }
                 if (index !== -1 && (index < current || index >= current + MAX_ROWS)) {
@@ -98,22 +111,27 @@ export function PreviewCanvas({
         <Shell
             rail={<CategoryRail files={files} active={category} onToggle={handleToggleCategory} />}
             map={
-                <DependencyMap
-                    files={files}
-                    edges={edges}
-                    folding={folding}
-                    open={open}
-                    selection={selection}
-                    hover={hover}
-                    refit={refit}
-                    category={category}
-                    onOpen={handleOpen}
-                    onClose={handleClose}
-                    onSelectFile={handleSelectFile}
-                    onScroll={handleScroll}
-                    onHover={setHover}
-                    onDeselect={handleDeselect}
-                />
+                <div className="absolute inset-0 flex flex-col">
+                    <CoverageBanner coverage={coverage} />
+                    <div className="relative min-h-0 flex-1">
+                        <DependencyMap
+                            files={files}
+                            edges={edges}
+                            folding={folding}
+                            open={open}
+                            selection={selection}
+                            hover={hover}
+                            refit={refit}
+                            category={category}
+                            onOpen={handleOpen}
+                            onClose={handleClose}
+                            onSelectFile={handleSelectFile}
+                            onScroll={handleScroll}
+                            onHover={setHover}
+                            onDeselect={handleDeselect}
+                        />
+                    </div>
+                </div>
             }
             detail={
                 <DetailPane
