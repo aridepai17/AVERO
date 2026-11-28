@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Coverage, ParseResult } from '../parser/index.ts';
 import type { Database, Json } from '../supabase/database.types.ts';
+import { SupersededError } from './run.ts';
 
 type Db = SupabaseClient<Database>;
 
@@ -18,9 +19,11 @@ export type StoredCoverage = Omit<Coverage, 'files'> & {
 
 export async function storeResult(
     db: Db,
-    analysis: { id: string; organizationId: string },
+    analysis: { id: string; organizationId: string; claimedStartedAt: string },
     result: ParseResult,
 ): Promise<void> {
+    await assertOwnsRun(db, analysis);
+
     // A re-run replaces what the last run stored; edges go with their files.
     const cleared = await db.from('files').delete().eq('analysis_id', analysis.id);
     if (cleared.error)
@@ -47,8 +50,12 @@ export async function storeResult(
         })),
     ];
     for (let i = 0; i < rows.length; i += FILE_CHUNK) {
+        await assertOwnsRun(db, analysis);
         const { error } = await db.from('files').insert(rows.slice(i, i + FILE_CHUNK));
-        if (error) throw new Error(`Storing files failed: ${error.message}`);
+        if (error) {
+            if (error.code === '23505') await assertOwnsRun(db, analysis);
+            throw new Error(`Storing files failed: ${error.message}`);
+        }
     }
 
     // Ends are matched to stored files by path in the database, which refuses
@@ -62,12 +69,28 @@ export async function storeResult(
         line: e.line,
     }));
     for (let i = 0; i < edges.length; i += EDGE_CHUNK) {
+        await assertOwnsRun(db, analysis);
         const { error } = await db.rpc('insert_edges', {
             p_analysis_id: analysis.id,
             p_edges: edges.slice(i, i + EDGE_CHUNK),
         });
         if (error) throw new Error(`Storing edges failed: ${error.message}`);
     }
+}
+
+async function assertOwnsRun(
+    db: Db,
+    analysis: { id: string; claimedStartedAt: string },
+): Promise<void> {
+    const { data, error } = await db
+        .from('analyses')
+        .select('id')
+        .eq('id', analysis.id)
+        .eq('started_at', analysis.claimedStartedAt)
+        .maybeSingle();
+    if (error)
+        throw new Error(`Verifying analysis ${analysis.id} ownership failed: ${error.message}`);
+    if (!data) throw new SupersededError(`Analysis ${analysis.id} was taken over by a newer run`);
 }
 
 export function storedCoverage(coverage: Coverage): Json {
